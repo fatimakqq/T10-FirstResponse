@@ -1,5 +1,5 @@
 <p align="center">
-<img src="https://github.com/acm-projects/Respondent/Photo-Drive-21.jpeg" width="625"/>
+<img src="https://github.com/acm-projects/Respondent/blob/main/Photo-Drive-21.jpeg" width="625"/>
 </p>
 
 # Respondent :ambulance:
