@@ -54,6 +54,7 @@ In life-threatening emergencies, seconds save lives. UEMR shortens response time
     * [NextJS](https://nextjs.org/)
     * [Capacitor](https://capacitorjs.com/docs)
     * [Example](https://github.com/mlynch/nextjs-tailwind-ionic-capacitor-starter)
+    * [secret sauce](http://wiki.active911.com/wiki/index.php/Accessing_the_API)
   
  
  
