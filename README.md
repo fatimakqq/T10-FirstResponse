@@ -6,18 +6,30 @@
 In life-threatening emergencies, seconds save lives. UEMR shortens response time and improves the accessibility of care for members of the UT Dallas community by having EMT's and resources available and nearby. But some of the tools in use to communicate and track emergencies are outdated and not as useful as they could be. Respondent is a tool that allows Student EMT's on campus to keep track of and respond to emergencies on campus efficiently.
  
 ## MVP :hospital:
--  Allow users to login and connect to other EMT's that are on call.
+-  Allow users to login/user authentication 
     
--   Track important data on users and emergencies such as average time to respond, common emergencies, and even a heatmap of emergencies.
+-   Track important data on users and emergencies such as average time to respond, and common emergencies
     
 -   When an emergency comes in, the app instantly pulls up relevant information and refreshers on how to approach the issue
     
--   See new emergencies come in as well as a log of previous emergencies and their reports
+-   See new emergencies come in/ push notifications/ do not disturb 
+
+-   Unit converter for medicine and weight
+
+-   In app map  
+
+-   Assests and inventory/ training 
+
+-   Calendar/schedule
  
 ## Stretch Goals :syringe:
 -   Navigation system specific for UTD campus that gives the most efficient route to the location of the emergency.
     
 -   Connection to the campus police network to actually implement this solution with the campus EMT.
+
+-   Create a heatmap of emergencies.
+
+-   Make aesthetic map with efficient routing 
  
  
  ## Milestones 📆
