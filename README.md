@@ -12,7 +12,7 @@ In life-threatening emergencies, seconds save lives. UEMR shortens response time
     
 -   When an emergency comes in, the app instantly pulls up relevant information and refreshers on how to approach the issue
     
--   See new emergencies come in/ push notifications/ do not disturb 
+-   See new emergencies come in/ push notifications/do not disturb 
 
 -   Unit converter for medicine and weight
 
