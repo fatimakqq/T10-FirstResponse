@@ -8,6 +8,7 @@ import {
   IonList,
   IonToggle,
   IonLabel,
+  IonCardContent,
 } from '@ionic/react';
 
 import Store from '../../store';
@@ -27,7 +28,6 @@ const Settings = () => {
       <IonContent>
         <IonList>
           <IonItem>
-            <IonLabel>Enable Notifications</IonLabel>
             <IonToggle
               checked={settings.enableNotifications}
               onIonChange={e => {
