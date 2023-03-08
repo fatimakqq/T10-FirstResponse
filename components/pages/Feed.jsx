@@ -1,6 +1,8 @@
-import Image from 'next/image';
+//import my item components 
+import Image from 'next/image';  
 import Card from '../ui/Card';
 
+//import my Ionic components
 import {
   IonPage,
   IonHeader,
@@ -12,6 +14,8 @@ import {
   IonContent,
   IonMenuButton,
 } from '@ionic/react';
+
+//import my page components 
 import Notifications from './Notifications';
 import { useState } from 'react';
 import { notificationsOutline } from 'ionicons/icons';

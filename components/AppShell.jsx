@@ -11,6 +11,12 @@ import ListDetail from './pages/ListDetail';
 import Settings from './pages/Settings';
 import Tabs from './pages/Tabs';
 
+import AssestsInventory from './pages/AssestsInventory';
+import Calendar from './pages/Calendar';
+import EmergencyLogs from './pages/EmergencyLogs';
+import Reports from './pages/Reports';
+import UnitConverter from './pages/UnitConverter';
+
 setupIonicReact({});
 
 window.matchMedia("(prefers-color-scheme: dark)").addListener(async (status) => {
@@ -27,7 +33,7 @@ const AppShell = () => {
       <IonReactRouter>
         <IonRouterOutlet id="main">
           <Route path="/tabs" render={() => <Tabs />} />
-          <Route path="/" render={() => <Redirect to="/tabs/feed" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/tabs/EmergencyLogs" />} exact={true} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
