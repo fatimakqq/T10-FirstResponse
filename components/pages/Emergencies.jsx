@@ -1,8 +1,5 @@
 import Image from 'next/image';
 import Card from '../ui/Card';
-// import { signIn, signOut, refresh } from '../../store/actions';
-import { handleGoogleSignin } from '../../store/actions';
-import { DisplayUser } from '../../pages';
 
 import {
   IonPage,
@@ -14,16 +11,21 @@ import {
   IonIcon,
   IonContent,
   IonMenuButton,
+  IonLabel,
+  IonCard,
+  IonCardHeader,
+  IonCardTitle,
   IonCardContent,
+  IonModal,
+  IonItem,
 } from '@ionic/react';
 import Notifications from './Notifications';
 import { useState } from 'react';
 import { notificationsOutline } from 'ionicons/icons';
 import { getHomeItems } from '../../store/selectors';
 import Store from '../../store';
-import { googleSignup } from '../../store/actions';
 
-const FeedCard = ({ title, type, text, author, authorAvatar, image }) => (
+const EmergencyCard = ({ title, type, text, author, authorAvatar, image }) => (
   <Card className="my-4 mx-auto">
     <div className="h-32 w-full relative">
       <img className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full" src={image} alt="" />
@@ -42,7 +44,7 @@ const FeedCard = ({ title, type, text, author, authorAvatar, image }) => (
   </Card>
 );
 
-const Feed = () => {
+const Emergencies = () => {
   const homeItems = Store.useState(getHomeItems);
   const [showNotifications, setShowNotifications] = useState(false);
 
@@ -50,7 +52,7 @@ const Feed = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Feed</IonTitle>
+          <IonTitle>Emergency Log</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
@@ -64,29 +66,37 @@ const Feed = () => {
       <IonContent className="ion-padding" fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Feed</IonTitle>
+            <IonTitle size="large">Emergency Log</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonButton onClick={handleGoogleSignin}>Sign In With Google</IonButton>
-        <Card>{DisplayUser}</Card>
-        {/* <IonButton expand="full" onClick={signIn()} >
-          <IonIcon name='logo-google' slot='start'></IonIcon> Sign In With Google</IonButton>
-        <IonButton expand='full' onClick={signOut()}> Sign Out </IonButton>
-        <IonButton expand='full' onClick={refresh()}> Refresh</IonButton> */}
-        
-        {/* <IonButton onClick = {googleSignup()}>Sign In</IonButton>
-        <Card>
-          <IonCardContent>
-            {{ userInfo }}
-          </IonCardContent>
-        </Card> */}
+        <IonTitle size="large">Test</IonTitle>
         <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
+        <IonCard color="danger" id="open-modal">
+          <IonCardHeader>
+            <IonCardTitle>Current Emergency</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            Heres a small text description for the current emergency. 
+          </IonCardContent>
+        </IonCard>
+
+        <IonModal color="danger" trigger="open-modal">
+          <IonHeader>
+            <IonToolbar></IonToolbar>
+          </IonHeader>
+          <IonContent className="ion-padding">
+            <IonItem>
+              <IonLabel>Active Emergency!!</IonLabel>
+            </IonItem>
+          </IonContent>
+        </IonModal>
+
         {homeItems.map((i, index) => (
-          <FeedCard {...i} key={index} />
+          <EmergencyCard {...i} key={index} />
         ))}
       </IonContent>
     </IonPage>
   );
 };
 
-export default Feed;
+export default Emergencies;
