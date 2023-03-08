@@ -1,15 +1,18 @@
 import { IonApp, IonLabel, IonRouterOutlet, setupIonicReact, IonTabs, IonTabBar, IonTabButton, IonIcon  } from '@ionic/react';
-import { cog, flash, list } from 'ionicons/icons';
+import { radioButtonOn, calculator, analytics, calendar, cube } from 'ionicons/icons';
 import { StatusBar, Style } from '@capacitor/status-bar';
 
 import { IonReactRouter } from '@ionic/react-router';
 import { Redirect, Route } from 'react-router-dom';
 
-import Feed from './pages/Feed';
+import Emergencies from './pages/Emergencies';
 import Lists from './pages/Lists';
 import ListDetail from './pages/ListDetail';
 import Settings from './pages/Settings';
+import Calendar from './pages/Calendar';
+import Converter from './pages/Converter';
 import Tabs from './pages/Tabs';
+
 
 setupIonicReact({});
 
@@ -27,7 +30,7 @@ const AppShell = () => {
       <IonReactRouter>
         <IonRouterOutlet id="main">
           <Route path="/tabs" render={() => <Tabs />} />
-          <Route path="/" render={() => <Redirect to="/tabs/feed" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
