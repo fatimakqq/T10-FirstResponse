@@ -1,6 +1,0 @@
-//tabs.jsx 
-<Route path="/tabs/feed" render={() => <Home />} exact={true} />
-<Route path="/tabs/lists" render={() => <Lists />} exact={true} />
-<Route path="/tabs/lists/:listId" render={() => <ListDetail />} exact={true} />
-<Route path="/tabs/settings" render={() => <Settings />} exact={true} />
-<Route path="/tabs" render={() => <Redirect to="/tabs/feed" />} exact={true} />
