@@ -30,7 +30,7 @@ const AppShell = () => {
       <IonReactRouter>
         <IonRouterOutlet id="main">
           <Route path="/tabs" render={() => <Tabs />} />
-          <Route path="/" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
+          <Route path="/" render={() => <Redirect to="/tabs/login" />} exact={true} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
