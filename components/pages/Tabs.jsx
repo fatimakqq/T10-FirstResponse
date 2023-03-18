@@ -1,12 +1,12 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { radioButtonOn, calculator, analytics, calendar, cube } from 'ionicons/icons';
+import { radioButtonOn, calculator, analytics, calendar, cube, cog } from 'ionicons/icons'; //import 'cog' icon
 
 import Home from './Emergencies';
 import Lists from './Lists';
 import ListDetail from './ListDetail';
-import Settings from './Settings';
+import Settings from './Settings'; //new settings import
 import Calendar from './Calendar';
 import Converter from './Converter';
 
@@ -20,6 +20,7 @@ const Tabs = () => {
         <Route path="/tabs/emergencies" render={() => <Home />} exact={true} />
         <Route path="/tabs/calendar" render={() => <Calendar />} exact={true} />
         <Route path="/tabs/assets" render={() => <Lists />} exact={true} />
+        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
@@ -42,6 +43,10 @@ const Tabs = () => {
         <IonTabButton tab="tab5" href="/tabs/assets">
           <IonIcon icon={cube} />
           <IonLabel>Assets</IonLabel>
+        </IonTabButton>
+        <IonTabButton tab="tab6" href="/tabs/settings"> 
+          <IonIcon icon={cog} />
+          <IonLabel>Settings</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>

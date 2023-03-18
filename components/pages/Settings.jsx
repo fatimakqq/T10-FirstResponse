@@ -9,6 +9,7 @@ import {
   IonToggle,
   IonLabel,
   IonCardContent,
+  IonButton,
 } from '@ionic/react';
 
 import Store from '../../store';
@@ -22,12 +23,13 @@ const Settings = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Settings</IonTitle>
+          <IonTitle class="ion-text-center" size="large">Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <IonList>
           <IonItem>
+            <IonLabel>Push Notifications</IonLabel>
             <IonToggle
               checked={settings.enableNotifications}
               onIonChange={e => {
@@ -37,6 +39,27 @@ const Settings = () => {
                 });
               }}
             />
+          </IonItem>
+          <IonItem>
+            <IonLabel>Auto Connect when app starts</IonLabel>
+            <IonToggle
+              checked={settings.enableAutoConnect}
+              onIonChange={e => {
+                setSettings({
+                  ...settings,
+                  enableAutoConnect: e.target.checked,
+                });
+              }}
+            />
+          </IonItem>
+          <IonItem>
+            <IonLabel>Setting 3</IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonLabel>Setting 4</IonLabel>
+          </IonItem>
+          <IonItem>
+            <IonButton class="ion-text-center" size="large" shape="round">Logout</IonButton>
           </IonItem>
         </IonList>
       </IonContent>
