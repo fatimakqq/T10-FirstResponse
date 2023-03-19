@@ -102,7 +102,6 @@ const Emergencies = () => {
             <IonTitle size="large">Emergency Log</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonTitle size="large">Test</IonTitle>
         <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
         <IonCard color="danger" id="open-modal">
           <IonCardHeader>
