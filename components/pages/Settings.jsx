@@ -10,7 +10,10 @@ import {
   IonLabel,
   IonCardContent,
   IonButton,
+  IonIcon,
 } from '@ionic/react';
+
+import { notifications, chatbox } from 'ionicons/icons';
 
 import Store from '../../store';
 import * as selectors from '../../store/selectors';
@@ -27,8 +30,10 @@ const Settings = () => {
         </IonToolbar>
       </IonHeader>
       <IonContent>
-        <IonList>
+        <IonList lines="none">
           <IonItem>
+            <IonIcon icon={notifications}></IonIcon>
+            &nbsp;
             <IonLabel>Push Notifications</IonLabel>
             <IonToggle
               checked={settings.enableNotifications}
@@ -60,6 +65,11 @@ const Settings = () => {
           </IonItem>
           <IonItem>
             <IonButton class="ion-text-center" size="large" shape="round">Logout</IonButton>
+          </IonItem>
+          <IonItem>
+            <IonIcon icon={chatbox}></IonIcon>
+            &nbsp;
+            <IonLabel color="blue">Help and Support</IonLabel>
           </IonItem>
         </IonList>
       </IonContent>

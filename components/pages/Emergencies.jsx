@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Card from '../ui/Card';
-
+import { IonReactRouter } from '@ionic/react-router';
+import { Redirect, Route } from 'react-router-dom';
 import {
   IonPage,
   IonHeader,
@@ -18,10 +19,12 @@ import {
   IonCardContent,
   IonModal,
   IonItem,
+  IonRouterOutlet,
 } from '@ionic/react';
-import Notifications from './Notifications';
+
+import Settings from './Settings';
 import { useState } from 'react';
-import { notificationsOutline } from 'ionicons/icons';
+import { cog } from 'ionicons/icons';
 import { getHomeItems } from '../../store/selectors';
 import Store from '../../store';
 
@@ -46,19 +49,21 @@ const EmergencyCard = ({ title, type, text, author, authorAvatar, image }) => (
 
 const Emergencies = () => {
   const homeItems = Store.useState(getHomeItems);
-  const [showNotifications, setShowNotifications] = useState(false);
 
   return (
     <IonPage>
       <IonHeader>
+        <IonRouterOutlet>
+        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
+        </IonRouterOutlet>
         <IonToolbar>
           <IonTitle>Emergency Log</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton onClick={() => setShowNotifications(true)}>
-              <IonIcon icon={notificationsOutline} />
+            <IonButton href="/tabs/settings">
+              <IonIcon icon={cog} />
             </IonButton>
           </IonButtons>
         </IonToolbar>
@@ -70,7 +75,6 @@ const Emergencies = () => {
           </IonToolbar>
         </IonHeader>
         <IonTitle size="large">Test</IonTitle>
-        <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
         <IonCard color="danger" id="open-modal">
           <IonCardHeader>
             <IonCardTitle>Current Emergency</IonCardTitle>
