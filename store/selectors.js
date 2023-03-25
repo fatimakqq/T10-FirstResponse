@@ -8,4 +8,5 @@ export const getNotifications = createSelector(getState, state => state.notifica
 export const getSettings = createSelector(getState, state => state.settings);
 export const getCalendar = createSelector(getState, state => state.calendar);
 export const getConverter = createSelector(getState, state => state.converter);
-export const getLogin = createSelector(getState, state => state.login);
+
+export const getEmLogInfo = createSelector(getState, state => state.emLogInfo);

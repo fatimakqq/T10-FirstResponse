@@ -24,6 +24,7 @@
     "bcryptjs": "^2.4.3",
     "capacitor": "^0.5.5",
     "classnames": "^2.2.6",
+    "framer-motion": "^10.6.0",
     "formik": "^2.2.9",
     "ionic": "^5.4.16",
     "mongodb": "^5.1.0",
@@ -36,6 +37,7 @@
     "react-dom": "^18.2.0",
     "react-router-dom": "^5.2.0",
     "react-virtuoso": "^1.1.1",
+    "styled-components": "^5.3.9",
     "tailwindcss": "^2.2.19",
     "yup": "^1.0.2"
   },

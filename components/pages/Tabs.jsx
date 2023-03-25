@@ -24,6 +24,7 @@ const Tabs = () => {
         <Route path="/tabs" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
         <Route path="/tabs/login" render={() => <Login />} exact={true} />
       </IonRouterOutlet>
+
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/tabs/converter">
           <IonIcon icon={calculator} />

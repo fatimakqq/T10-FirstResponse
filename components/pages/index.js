@@ -33,6 +33,15 @@ export const homeItems = [
   },
 ];
 
+//////
+export const emLogInfo = [
+
+{  title: "Emergency 1", time: "9:00AM", location: "Main St"},
+{  title: "Emergency 2", time: "2:00 PM", location: "Broadway" },
+{  title: "Emergency 3", time: "7:00 PM", location: "Oak St" },
+
+]; //end of emLogInfo array
+
 export const notifications = [
   { title: 'New friend request', when: '6 hr' },
   { title: 'Please change your password', when: '1 day' },
@@ -40,7 +49,7 @@ export const notifications = [
   { title: 'Welcome to the app!', when: '1 month' },
 ];
 
-// Some fake lists
+// Some fake lists 
 export const lists = [
   {
     name: 'Groceries',
