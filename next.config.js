@@ -9,6 +9,8 @@ module.exports = withTM({
   basePath: '',
   images: {
     domains: ['images.unsplash.com'],
+    loader: 'akamai',
+    path: '',
   },
   swcMinify: true,
 });

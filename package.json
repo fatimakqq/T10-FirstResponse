@@ -19,6 +19,7 @@
     "@codetrix-studio/capacitor-google-auth": "^3.2.2",
     "@ionic/react": "^6.2.9",
     "@ionic/react-router": "^6.2.9",
+    "@next/font": "^13.2.4",
     "autoprefixer": "^10.2.6",
     "bcryptjs": "^2.4.3",
     "classnames": "^2.2.6",
