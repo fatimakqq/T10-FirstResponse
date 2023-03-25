@@ -23,6 +23,7 @@ import {
 } from '@ionic/react';
 
 import Settings from './Settings';
+import Tabs from './Tabs'
 import { useState } from 'react';
 import { cog } from 'ionicons/icons';
 import { getHomeItems } from '../../store/selectors';

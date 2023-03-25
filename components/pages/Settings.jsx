@@ -13,9 +13,10 @@ import {
   IonIcon,
 } from '@ionic/react';
 
-import { notifications, chatbox } from 'ionicons/icons';
-
+import { notifications, chatbox, helpCircle, lockClosed, person, exit } from 'ionicons/icons';
 import Store from '../../store';
+import Notifications from './Notifications';
+import { useState } from 'react';
 import * as selectors from '../../store/selectors';
 import { setSettings } from '../../store/actions';
 
@@ -31,8 +32,13 @@ const Settings = () => {
       </IonHeader>
       <IonContent>
         <IonList lines="none">
+          <IonItem button detail={true}>
+          <IonIcon icon={person}></IonIcon>
+            &nbsp;
+          <IonLabel>Account</IonLabel>
+          </IonItem>
           <IonItem>
-            <IonIcon icon={notifications}></IonIcon>
+          <IonIcon icon={notifications}></IonIcon>
             &nbsp;
             <IonLabel>Push Notifications</IonLabel>
             <IonToggle
@@ -45,31 +51,25 @@ const Settings = () => {
               }}
             />
           </IonItem>
-          <IonItem>
-            <IonLabel>Auto Connect when app starts</IonLabel>
-            <IonToggle
-              checked={settings.enableAutoConnect}
-              onIonChange={e => {
-                setSettings({
-                  ...settings,
-                  enableAutoConnect: e.target.checked,
-                });
-              }}
-            />
+          <IonItem button detail={true}>
+          <IonIcon icon={lockClosed}></IonIcon>
+            &nbsp;
+            <IonLabel>Privacy and Security</IonLabel>
           </IonItem>
-          <IonItem>
-            <IonLabel>Setting 3</IonLabel>
-          </IonItem>
-          <IonItem>
-            <IonLabel>Setting 4</IonLabel>
-          </IonItem>
-          <IonItem>
-            <IonButton class="ion-text-center" size="large" shape="round">Logout</IonButton>
-          </IonItem>
-          <IonItem>
+          <IonItem button detail={true}>
             <IonIcon icon={chatbox}></IonIcon>
             &nbsp;
             <IonLabel color="blue">Help and Support</IonLabel>
+          </IonItem>
+          <IonItem button detail={true}>
+          <IonIcon icon={helpCircle}></IonIcon>
+            &nbsp;
+            <IonLabel>About</IonLabel>
+          </IonItem>
+          <IonItem button>
+          <IonIcon icon={exit}></IonIcon>
+            &nbsp;
+            <ionLabel color="red">Logout</ionLabel>
           </IonItem>
         </IonList>
       </IonContent>

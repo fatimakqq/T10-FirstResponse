@@ -1,14 +1,14 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { radioButtonOn, calculator, analytics, calendar, cube, cog } from 'ionicons/icons'; //import 'cog' icon
+import { radioButtonOn, calculator, analytics, calendar, cube } from 'ionicons/icons'; //import 'cog' icon
 
 import Home from './Emergencies';
 import Lists from './Lists';
 import ListDetail from './ListDetail';
-import Settings from './Settings'; //new settings import
 import Calendar from './Calendar';
 import Converter from './Converter';
+import Settings from './Settings'
 
 const Tabs = () => {
   return (
@@ -43,10 +43,6 @@ const Tabs = () => {
         <IonTabButton tab="tab5" href="/tabs/assets">
           <IonIcon icon={cube} />
           <IonLabel>Assets</IonLabel>
-        </IonTabButton>
-        <IonTabButton tab="tab6" href="/tabs/settings"> 
-          <IonIcon icon={cog} />
-          <IonLabel>Settings</IonLabel>
         </IonTabButton>
       </IonTabBar>
     </IonTabs>
