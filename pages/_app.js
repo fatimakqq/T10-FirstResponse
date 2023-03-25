@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Script from 'next/script';
 import { setupIonicReact } from '@ionic/react';
 
+import '../styles/global.css';
+
 import 'tailwindcss/tailwind.css';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -19,8 +21,8 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-import '../styles/global.css';
 import '../styles/variables.css';
+import '../styles/global.css';
 
 function MyApp({ Component, pageProps }) {
   return (
