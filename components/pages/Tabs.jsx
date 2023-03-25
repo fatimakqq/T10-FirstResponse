@@ -10,6 +10,7 @@ import ListDetail from './ListDetail';
 import Settings from './Settings';
 import Calendar from './Calendar';
 import Converter from './Converter';
+import Login from './Login'
 
 const Tabs = () => {
   return (
@@ -22,7 +23,9 @@ const Tabs = () => {
         <Route path="/tabs/calendar" render={() => <Calendar />} exact={true} />
         <Route path="/tabs/assets" render={() => <Lists />} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
+        <Route path="/tabs/login" render={() => <Login />} exact={true} />
       </IonRouterOutlet>
+
       <IonTabBar slot="bottom">
         <IonTabButton tab="tab1" href="/tabs/converter">
           <IonIcon icon={calculatorOutline}/>

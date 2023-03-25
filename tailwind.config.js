@@ -17,10 +17,16 @@ module.exports = {
       },
       
 
+    
+      backgroundColor:{
+        'bg-opacity-50': 'rgba(39, 88, 68, 0.5)',
+      },
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      backgroundColor: ['active', 'hover', 'focus'],
+    },
   },
   plugins: [],
 };
