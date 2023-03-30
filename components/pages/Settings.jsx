@@ -16,7 +16,7 @@ import {
   IonBackButton,
 } from '@ionic/react';
 
-import { Redirect, Route, Link, } from 'react-router-dom';
+import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 import { notifications, chatbox, helpCircle, lockClosed, person, exit, arrowBack } from 'ionicons/icons';
 import Store from '../../store';
@@ -31,6 +31,10 @@ import { setSettings } from '../../store/actions';
 
 const Settings = () => {
   const settings = Store.useState(selectors.getSettings);
+  const history = useHistory();
+  const handleBackClick = () => {
+    history.goBack();
+  }
 
   return (
     <IonPage>
@@ -38,7 +42,7 @@ const Settings = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton routerLink="/tabs" icon={arrowBack} />
+            <IonBackButton defaultHref="/tabs" icon={arrowBack} onClick={handleBackClick} />
           </IonButtons>
           <IonTitle class="ion-text-center" size="large">Settings</IonTitle>
         </IonToolbar>
