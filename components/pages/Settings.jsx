@@ -11,28 +11,44 @@ import {
   IonCardContent,
   IonButton,
   IonIcon,
+  IonRouterOutlet,
+  IonButtons,
+  IonBackButton,
 } from '@ionic/react';
 
-import { notifications, chatbox, helpCircle, lockClosed, person, exit } from 'ionicons/icons';
+import { Redirect, Route, Link, useHistory } from 'react-router-dom';
+import { IonReactRouter } from '@ionic/react-router';
+import { notifications, chatbox, helpCircle, lockClosed, person, exit, arrowBack } from 'ionicons/icons';
 import Store from '../../store';
-import Notifications from './Notifications';
+import Home from './Emergencies'
+import Account from './Account'
 import { useState } from 'react';
 import * as selectors from '../../store/selectors';
 import { setSettings } from '../../store/actions';
 
 const Settings = () => {
   const settings = Store.useState(selectors.getSettings);
+  const history = useHistory();
+  const handleBackClick = () => {
+    history.goBack();
+  }
 
   return (
     <IonPage>
+      <IonRouterOutlet>
+
+        </IonRouterOutlet>
       <IonHeader>
         <IonToolbar>
+          <IonButtons slot="start">
+            <IonBackButton defaultHref="/tabs" icon={arrowBack} onClick={handleBackClick} />
+          </IonButtons>
           <IonTitle class="ion-text-center" size="large">Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent>
         <IonList lines="none">
-          <IonItem button detail={true}>
+          <IonItem button detail={true} routerLink="/account">
           <IonIcon icon={person}></IonIcon>
             &nbsp;
           <IonLabel>Account</IonLabel>
