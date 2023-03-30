@@ -15,7 +15,7 @@ import {
     IonBackButton,
   } from '@ionic/react';
 
-import { Redirect, Route, Link, useHistory } from 'react-router-dom';
+import { Redirect, Route, Link, } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
 import Store from '../../store';
 import Settings from './Settings'
@@ -25,12 +25,6 @@ import * as selectors from '../../store/selectors';
 
 const Account = () => {
     const account = Store.useState(selectors.account);
-    const history = useHistory();
-
-    const handleBackClick = () => {
-        history.goBack();
-    }
-
 return (
     <IonPage>
         <IonHeader>
@@ -47,6 +41,6 @@ return (
     </IonPage>
 
     );  
-}
+};
 
 export default Account;
