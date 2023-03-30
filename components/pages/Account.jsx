@@ -18,9 +18,9 @@ import {
 import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import { arrowBack } from 'ionicons/icons';
 import Store from '../../store';
+import Settings from './Settings'
 import { useState } from 'react';
 import * as selectors from '../../store/selectors';
-import { setSettings } from '../../store/actions';
 
 
 const Account = () => {

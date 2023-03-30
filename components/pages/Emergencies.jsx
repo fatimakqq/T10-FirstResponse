@@ -54,16 +54,13 @@ const Emergencies = () => {
   return (
     <IonPage>
       <IonHeader>
-        <IonRouterOutlet>
-        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
-        </IonRouterOutlet>
         <IonToolbar>
           <IonTitle>Emergency Log</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton href="/tabs/settings">
+            <IonButton routerLink="/tabs/settings">
               <IonIcon icon={cog} />
             </IonButton>
           </IonButtons>
