@@ -22,9 +22,6 @@ import { notifications, chatbox, helpCircle, lockClosed, person, exit, arrowBack
 import Store from '../../store';
 import Home from './Emergencies';
 import Account from './Account';
-import Privacy from './Privacy';
-import Help from './Help';
-import About from './About';
 import { useState } from 'react';
 import * as selectors from '../../store/selectors';
 import { setSettings } from '../../store/actions';
@@ -73,12 +70,12 @@ const Settings = () => {
             &nbsp;
             <IonLabel>Privacy and Security</IonLabel>
           </IonItem>
-          <IonItem button detail={true} routerLink="/tabs/help">
+          <IonItem button detail={true}>
             <IonIcon icon={chatbox}></IonIcon>
             &nbsp;
             <IonLabel color="blue">Help and Support</IonLabel>
           </IonItem>
-          <IonItem button detail={true} routerLink="/tabs/about">
+          <IonItem button detail={true}>
           <IonIcon icon={helpCircle}></IonIcon>
             &nbsp;
             <IonLabel>About</IonLabel>

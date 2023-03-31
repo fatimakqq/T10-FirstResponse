@@ -63,7 +63,7 @@ const Emergencies = () => {
             <IonMenuButton />
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton href="/tabs/settings">
+            <IonButton routerLink="/tabs/settings">
               <IonIcon icon={cog} />
             </IonButton>
           </IonButtons>
