@@ -16,7 +16,7 @@ import {
   } from '@ionic/react';
 
 import { Redirect, Route, Link, useHistory } from 'react-router-dom';
-import { arrowBack } from 'ionicons/icons';
+import { arrowBack, notifications, } from 'ionicons/icons';
 import Store from '../../store';
 import { useState } from 'react';
 import * as selectors from '../../store/selectors';
@@ -24,7 +24,7 @@ import { setSettings } from '../../store/actions';
 
 
 const Privacy = () => {
-    const account = Store.useState(selectors.privacy);
+    const privacy = Store.useState(selectors.privacy);
     const history = useHistory();
     const handleBackClick = () => {
         history.goBack();
@@ -41,7 +41,20 @@ return (
     </IonToolbar>
         </IonHeader>
     <IonContent fullscreen>
-
+    <IonItem>
+          <IonLabel>Privacy Policy</IonLabel>
+        </IonItem>
+        <IonItem>
+          <IonLabel>Terms of Service</IonLabel>
+        </IonItem>
+        <IonItem>
+          <IonLabel>Two-factor Authentication</IonLabel>
+          <IonToggle slot="end"></IonToggle>
+        </IonItem>
+        <IonItem>
+          <IonLabel>Biometric Authentication</IonLabel>
+          <IonToggle slot="end"></IonToggle>
+        </IonItem>
     </IonContent>
     </IonPage>
 

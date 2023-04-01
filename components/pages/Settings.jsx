@@ -16,7 +16,7 @@ import {
   IonBackButton,
 } from '@ionic/react';
 
-import { Redirect, Route, Link, } from 'react-router-dom';
+import { Redirect, Route, Link, useHistory } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 import { notifications, chatbox, helpCircle, lockClosed, person, exit, arrowBack } from 'ionicons/icons';
 import Store from '../../store';
@@ -31,6 +31,21 @@ import { setSettings } from '../../store/actions';
 
 const Settings = () => {
   const settings = Store.useState(selectors.getSettings);
+  const history = useHistory();
+  const handleLogout = () => {
+    // perform logout logic here
+    // for example, clear user session data or access tokens
+    // and then redirect to login page
+    localStorage.removeItem('accessToken');
+    onLogout();
+    history.replace('');
+  };
+
+  const onLogout = () => {
+    console.log("User has been logged out");
+    // perform any other cleanup or post-logout actions here
+  }
+
 
   return (
     <IonPage>
@@ -79,7 +94,7 @@ const Settings = () => {
             &nbsp;
             <IonLabel>About Us</IonLabel>
           </IonItem>
-          <IonItem button>
+          <IonItem button onClick={handleLogout}>
           <IonIcon icon={exit}></IonIcon>
             &nbsp;
             <ionLabel color="red">Logout</ionLabel>

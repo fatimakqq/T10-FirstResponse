@@ -28,7 +28,7 @@ import { setSettings } from '../../store/actions';
 
 
 const About = () => {
-    const account = Store.useState(selectors.about);
+    const about = Store.useState(selectors.about);
     const history = useHistory();
     const handleBackClick = () => {
         history.goBack();
@@ -45,10 +45,17 @@ return (
     </IonToolbar>
         </IonHeader>
     <IonContent className="ion-padding">
-    <IonCard color="warning" className="ion-text-center">
-            <IonCardContent>
-                <p className="ion-text-center ion-text-large">In life-threatening emergencies, seconds save lives. UEMR shortens response time and improves the accessibility of care for members of the UT Dallas community by having EMT's and resources available and nearby. But some of the tools in use to communicate and track emergencies are outdated and not as useful as they could be. Respondent is a tool that allows Student EMT's on campus to keep track of and respond to emergencies on campus efficiently.</p>
-            </IonCardContent>
+    <IonCard>
+          <img src="https://raw.githubusercontent.com/acm-projects/Respondent/main/Photo-Drive-21.jpeg" alt="placeholder" />
+          <IonCardHeader>
+            <IonCardSubtitle>Welcome to Respondent</IonCardSubtitle>
+            <IonCardTitle>We are a team of passionate developers aiming to maintain a safe environment at UT Dallas.</IonCardTitle>
+          </IonCardHeader>
+          <IonCardContent>
+            <p>Our mission is to create the best possible user experience for student EMT's to respond to emergencies on campus efficiently.</p>
+            <p>With a focus on innovative design and accessibility of care for members at UT Dallas, we strive to improve on the current technology in place and keep our campus safe.</p>
+            <p>Thank you for choosing our app!</p>
+          </IonCardContent>
         </IonCard>
     </IonContent>
     </IonPage>

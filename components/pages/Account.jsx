@@ -45,7 +45,7 @@ return (
         <IonContent className="ion-padding">
         <div className="profile-picture-container ion-text-center">
           <IonAvatar>
-            <img src="https://via.placeholder.com/150" alt="Profile" />
+            <img alt="Profile" src="https://ionicframework.com/docs/img/demos/avatar.svg" />
           </IonAvatar>
         </div>
         <IonItem>
