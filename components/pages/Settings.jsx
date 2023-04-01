@@ -44,7 +44,7 @@ const Settings = () => {
           <IonTitle class="ion-text-center" size="large">Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent>
+      <IonContent fullscreen>
         <IonList lines="none">
           <IonItem button detail={true} routerLink="/tabs/account" icon={person}>
           <IonIcon icon={person}></IonIcon>

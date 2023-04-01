@@ -29,7 +29,7 @@ const Account = () => {
     const handleBackClick = () => {
         history.goBack();
     }
-    
+
 return (
     <IonPage>
         <IonHeader>
@@ -40,7 +40,7 @@ return (
         <IonTitle class = "ion-text-center" size="large">Account</IonTitle>
     </IonToolbar>
         </IonHeader>
-    <IonContent>
+    <IonContent fullscreen>
 
 </IonContent>
     </IonPage>
