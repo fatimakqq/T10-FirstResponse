@@ -16,22 +16,21 @@ import {
   IonBackButton,
 } from '@ionic/react';
 
-import { Redirect, Route, Link, useHistory } from 'react-router-dom';
+import { Redirect, Route, Link, } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 import { notifications, chatbox, helpCircle, lockClosed, person, exit, arrowBack } from 'ionicons/icons';
 import Store from '../../store';
 import Home from './Emergencies';
 import Account from './Account';
+import Privacy from './Privacy';
+import Help from './Help';
+import About from './About';
 import { useState } from 'react';
 import * as selectors from '../../store/selectors';
 import { setSettings } from '../../store/actions';
 
 const Settings = () => {
   const settings = Store.useState(selectors.getSettings);
-  const history = useHistory();
-  const handleBackClick = () => {
-    history.goBack();
-  }
 
   return (
     <IonPage>
@@ -39,12 +38,12 @@ const Settings = () => {
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
-            <IonBackButton defaultHref="/tabs" icon={arrowBack} onClick={handleBackClick} />
+            <IonBackButton routerLink="/tabs" icon={arrowBack} />
           </IonButtons>
           <IonTitle class="ion-text-center" size="large">Settings</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent>
         <IonList lines="none">
           <IonItem button detail={true} routerLink="/tabs/account" icon={person}>
           <IonIcon icon={person}></IonIcon>
@@ -70,15 +69,15 @@ const Settings = () => {
             &nbsp;
             <IonLabel>Privacy and Security</IonLabel>
           </IonItem>
-          <IonItem button detail={true}>
+          <IonItem button detail={true} routerLink="/tabs/help">
             <IonIcon icon={chatbox}></IonIcon>
             &nbsp;
             <IonLabel color="blue">Help and Support</IonLabel>
           </IonItem>
-          <IonItem button detail={true}>
+          <IonItem button detail={true} routerLink="/tabs/about">
           <IonIcon icon={helpCircle}></IonIcon>
             &nbsp;
-            <IonLabel>About</IonLabel>
+            <IonLabel>About Us</IonLabel>
           </IonItem>
           <IonItem button>
           <IonIcon icon={exit}></IonIcon>

@@ -13,10 +13,12 @@ import {
     IonButtons,
     IonIcon,
     IonBackButton,
+    IonAvatar,
+    IonInput,
   } from '@ionic/react';
 
-import { Redirect, Route, Link, useHistory } from 'react-router-dom';
-import { arrowBack } from 'ionicons/icons';
+import { Redirect, Route, Link, useHistory, } from 'react-router-dom';
+import { arrowBack, pencilOutline } from 'ionicons/icons';
 import Store from '../../store';
 import { useState } from 'react';
 import * as selectors from '../../store/selectors';
@@ -40,9 +42,38 @@ return (
         <IonTitle class = "ion-text-center" size="large">Account</IonTitle>
     </IonToolbar>
         </IonHeader>
-    <IonContent fullscreen>
-
-</IonContent>
+        <IonContent className="ion-padding">
+        <div className="profile-picture-container ion-text-center">
+          <IonAvatar>
+            <img src="https://via.placeholder.com/150" alt="Profile" />
+          </IonAvatar>
+        </div>
+        <IonItem>
+          <IonLabel position="floating">First Name</IonLabel>
+          <IonInput type="text"></IonInput>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Last Name</IonLabel>
+          <IonInput type="text"></IonInput>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Email</IonLabel>
+          <IonInput type="email"></IonInput>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Contact Number</IonLabel>
+          <IonInput type="tel"></IonInput>
+        </IonItem>
+        <IonItem>
+          <IonLabel>Birthdate:</IonLabel>
+          <IonInput type="date"></IonInput>
+        </IonItem>
+        <IonItem>
+          <IonLabel position="floating">Gender</IonLabel>
+          <IonInput type="text"></IonInput>
+        </IonItem>
+        <IonButton expand="block">Save Changes</IonButton>
+      </IonContent>
     </IonPage>
 
     );  
