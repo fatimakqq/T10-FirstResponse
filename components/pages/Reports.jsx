@@ -25,7 +25,7 @@ const MapCard = ({destination}) => {
         script.onload = () => {
             const newMap = new window.google.maps.Map(document.getElementById('map'), {
               center: { lat: 0, lng: 0 },
-              zoom: 15,
+              zoom: 17,
             });
             setMap(newMap);
 
@@ -47,8 +47,10 @@ const MapCard = ({destination}) => {
                     directionsRenderer.setDirections(result);
                   }
                 });
+                console.log("hello");
+                newMap.setCenter(origin);
+                
               });
-
     };
     document.head.appendChild(script);
     }, [destination]);
