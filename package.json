@@ -20,13 +20,14 @@
     "@ionic/react": "^6.2.9",
     "@ionic/react-router": "^6.2.9",
     "@next/font": "^13.2.4",
+    "@react-google-maps/api": "^2.18.1",
     "autoprefixer": "^10.2.6",
     "bcrypt": "^5.1.0",
     "bcryptjs": "^2.4.3",
     "capacitor": "^0.5.5",
     "classnames": "^2.2.6",
-    "framer-motion": "^10.6.0",
     "formik": "^2.2.9",
+    "framer-motion": "^10.6.0",
     "ionic": "^5.4.16",
     "mongodb": "^5.1.0",
     "mongoose": "^7.0.2",
@@ -40,6 +41,7 @@
     "react-virtuoso": "^1.1.1",
     "styled-components": "^5.3.9",
     "tailwindcss": "^2.2.19",
+    "use-places-autocomplete": "^4.0.0",
     "yup": "^1.0.2"
   },
   "devDependencies": {

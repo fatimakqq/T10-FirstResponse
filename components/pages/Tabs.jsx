@@ -6,6 +6,7 @@ import { analyticsOutline, calculatorOutline, radioButtonOffOutline, calendarOut
 
 import Home from './Emergencies';
 import Lists from './Lists';
+import Reports from './Reports'
 import ListDetail from './ListDetail';
 import Settings from './Settings';
 import Calendar from './Calendar';
@@ -17,7 +18,7 @@ const Tabs = () => {
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/tabs/converter" render={() => <Converter />} exact={true} />
-        <Route path="/tabs/lists" render={() => <Lists />} exact={true} />
+        <Route path="/tabs/reports" render={() => <Reports />} exact={true} />
         <Route path="/tabs/lists/:listId" render={() => <ListDetail />} exact={true} />
         <Route path="/tabs/emergencies" render={() => <Home />} exact={true} />
         <Route path="/tabs/calendar" render={() => <Calendar />} exact={true} />
@@ -31,7 +32,7 @@ const Tabs = () => {
           <IonIcon icon={calculatorOutline}/>
           <IonLabel>Converter</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="tab2" href="/tabs/lists">
+        <IonTabButton tab="tab2" href="/tabs/reports">
           <IonIcon icon={analyticsOutline} />
           <IonLabel>Reports</IonLabel>
         </IonTabButton>
