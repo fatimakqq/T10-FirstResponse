@@ -7,33 +7,20 @@ import "tailwindcss/tailwind.css";
 
 import Card from '../ui/Card';
 // import { signIn, signOut, refresh } from '../../store/actions';
-import { handleGoogleSignin } from '../../store/actions';
-import { DisplayUser } from '../../pages';
-import styles from '../../styles/Form.module.css'
-import Head from 'next/head'
-import Link from 'next/link'
-import { signIn, signOut } from "next-auth/react"
-import { useFormik } from 'formik';
-import { RegisterValidate, LoginValidate } from "../../lib/validate"
-import { useRouter } from 'next/router';
-import Layout from '../../layout/layout';
-import { getCsrfToken } from 'next-auth/react';
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { getSession } from 'next-auth/react'
 import { useSession } from "next-auth/react"
 import { useNavigate } from "react-router-dom";
 
 //import my page components
 import Notifications from './Notifications';
-import { useEffect, useState } from 'react';
-import { Route, useHistory } from 'react-router-dom';
-import { notificationsOutline } from 'ionicons/icons';
+import { useState, useEffect } from 'react';
+import { notificationsOutline, cog} from 'ionicons/icons';
 import { getEmLogInfo, getHomeItems } from '../../store/selectors';
 import Store from '../../store';
+import { Redirect, Route, useHistory } from 'react-router-dom';
+import { IonReactRouter } from '@ionic/react-router';
 
 import IndividualLog from './IndividualLog';
-
 //import my Ionic components
 import {
   IonPage,
@@ -52,7 +39,10 @@ import {
   IonCardContent,
   IonModal,
   IonItem,
+  IonRouterOutlet,
 } from '@ionic/react';
+import Settings from './Settings';
+import Tabs from './Tabs'
 
 const CustomButton = ({ title, timeStart, timeEnd, location, date, logId }) => {
   const emergency = { title, timeStart, timeEnd, location, date, logId };
@@ -125,14 +115,17 @@ const Emergencies = () => {
     <IonPage>
 
       <IonHeader>
+        <IonRouterOutlet>
+        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
+        </IonRouterOutlet>
         <IonToolbar>
           <IonTitle>Emergency Logs</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton onClick={() => setShowNotifications(true)}>
-              <IonIcon icon={notificationsOutline} />
+            <IonButton routerLink="/tabs/settings">
+              <IonIcon icon={cog} />
             </IonButton>
           </IonButtons>
         </IonToolbar>

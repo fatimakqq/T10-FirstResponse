@@ -6,24 +6,37 @@ import { analyticsOutline, calculatorOutline, radioButtonOffOutline, calendarOut
 
 import Home from './Emergencies';
 import Lists from './Lists';
+import Reports from './Reports'
 import ListDetail from './ListDetail';
-import Settings from './Settings';
 import Calendar from './Calendar';
 import Converter from './Converter';
-import Login from './Login'
+import Login from './Login';
+import Settings from './Settings';
+import Account from './Account';
+import About from './About';
+import Help from './Help';
+import Privacy from './Privacy';
+import Assets from './Assets'
+import Chat from './Chat';
 
 const Tabs = () => {
   return (
     <IonTabs>
       <IonRouterOutlet>
         <Route path="/tabs/converter" render={() => <Converter />} exact={true} />
-        <Route path="/tabs/lists" render={() => <Lists />} exact={true} />
+        <Route path="/tabs/reports" render={() => <Reports />} exact={true} />
         <Route path="/tabs/lists/:listId" render={() => <ListDetail />} exact={true} />
         <Route path="/tabs/emergencies" render={() => <Home />} exact={true} />
         <Route path="/tabs/calendar" render={() => <Calendar />} exact={true} />
-        <Route path="/tabs/assets" render={() => <Lists />} exact={true} />
-        <Route path="/tabs" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
+        <Route path="/tabs/assets" render={() => <Assets />} exact={true} />
+        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
+        <Route path="/tabs/account" render={() => <Account />} exact={true} />
+        <Route path="/tabs/about" render={() => <About/>} exact={true} />
+        <Route path="/tabs/help" render={() => <Help/>} exact={true} />
+        <Route path="/tabs/privacy" render={() => <Privacy/>} exact={true} />
+        <Route path="/tabs" render={() => <Redirect to="/tabs/login" />} exact={true} />
         <Route path="/tabs/login" render={() => <Login />} exact={true} />
+        <Route path="/tabs/chat" render={() => <Chat />} exact={true} />
       </IonRouterOutlet>
 
       <IonTabBar slot="bottom">
@@ -31,7 +44,7 @@ const Tabs = () => {
           <IonIcon icon={calculatorOutline}/>
           <IonLabel>Converter</IonLabel>
         </IonTabButton>
-        <IonTabButton tab="tab2" href="/tabs/lists">
+        <IonTabButton tab="tab2" href="/tabs/reports">
           <IonIcon icon={analyticsOutline} />
           <IonLabel>Reports</IonLabel>
         </IonTabButton>

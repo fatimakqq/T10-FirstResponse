@@ -13,7 +13,6 @@ import {
 } from '@ionic/react';
 import Store from '../../store';
 import { getNotifications } from '../../store/selectors';
-
 import { close } from 'ionicons/icons';
 
 const NotificationItem = ({ notification }) => (
