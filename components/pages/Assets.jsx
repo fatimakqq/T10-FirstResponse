@@ -38,7 +38,7 @@ function Assets() {
       { id: 2, name: 'Thermometers', quantity: 15, checked: false, building: 'Building B' },
       { id: 3, name: 'Sphygmomanometers', quantity: 10, checked: false, building: 'Building B' },
       { id: 1, name: 'Stethoscopes', quantity: 15, checked: false, building: 'Building C'},
-      { id: 2, name: 'Thermometers', quantity: 15, checked: false, building: 'Building C' },
+      { id: 2, name: 'Thermometers', quantity: 15, checked: false, buiylding: 'Building C' },
       { id: 3, name: 'Sphygmomanometers', quantity: 10, checked: false, building: 'Building C' },
     ]);
     const [selectedBuilding, setSelectedBuilding] = useState('Building A');
