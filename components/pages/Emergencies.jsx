@@ -26,10 +26,11 @@ import { useSession } from "next-auth/react"
 //import my page components
 import Notifications from './Notifications';
 import { useState } from 'react';
-import { notificationsOutline } from 'ionicons/icons';
+import { notificationsOutline, cog} from 'ionicons/icons';
 import { getEmLogInfo, getHomeItems } from '../../store/selectors';
 import Store from '../../store';
-
+import { Redirect, Route } from 'react-router-dom';
+import { IonReactRouter } from '@ionic/react-router';
 //import my Ionic components
 import {
   IonPage,
@@ -48,7 +49,10 @@ import {
   IonCardContent,
   IonModal,
   IonItem,
+  IonRouterOutlet,
 } from '@ionic/react';
+import Settings from './Settings';
+import Tabs from './Tabs'
 
 // <styles jsx>{`
 //   .custom-button {
@@ -175,14 +179,17 @@ const Emergencies = () => {
     <IonPage>
 
       <IonHeader>
+        <IonRouterOutlet>
+        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
+        </IonRouterOutlet>
         <IonToolbar>
           <IonTitle>Emergency Logs</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton onClick={() => setShowNotifications(true)}>
-              <IonIcon icon={notificationsOutline} />
+            <IonButton routerLink="/tabs/settings">
+              <IonIcon icon={cog} />
             </IonButton>
           </IonButtons>
         </IonToolbar>
