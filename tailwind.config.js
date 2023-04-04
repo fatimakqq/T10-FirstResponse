@@ -14,6 +14,7 @@ module.exports = {
       },
       fontFamily: {
         majorMonoDisplay: ["MAJORMONO", "sans"],
+        manjari: ["MANJARI", "sans-serif"], //not too sure if it's monspace, sans-srif, sans, etc...
       },
       
 
