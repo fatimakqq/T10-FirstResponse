@@ -7,19 +7,6 @@ import "tailwindcss/tailwind.css";
 
 import Card from '../ui/Card';
 // import { signIn, signOut, refresh } from '../../store/actions';
-import { handleGoogleSignin } from '../../store/actions';
-import { DisplayUser } from '../../pages';
-import styles from '../../styles/Form.module.css'
-import Head from 'next/head'
-import Link from 'next/link'
-import { signIn, signOut } from "next-auth/react"
-import { useFormik } from 'formik';
-import { RegisterValidate, LoginValidate } from "../../lib/validate"
-import { useRouter } from 'next/router';
-import Layout from '../../layout/layout';
-import { getCsrfToken } from 'next-auth/react';
-import { Formik, Field, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
 import { getSession } from 'next-auth/react'
 import { useSession } from "next-auth/react"
 
