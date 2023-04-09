@@ -1,91 +1,258 @@
+import { handleGoogleSignin } from '../../store/actions';
+import { DisplayUser } from '../../pages';
+import styles from '../../styles/Form.module.css'
+import Head from 'next/head'
+import Link from 'next/link'
+import { signIn, signOut } from "next-auth/react"
+import { useFormik } from 'formik';
+import { RegisterValidate, LoginValidate } from "../../lib/validate"
+import { useRouter } from 'next/router';
+import { getCsrfToken } from 'next-auth/react';
+import { Formik, Field, ErrorMessage } from 'formik';
+import * as Yup from 'yup';
 import {
     IonPage,
-    IonCheckbox,
     IonHeader,
-    IonItem,
     IonToolbar,
     IonTitle,
-    IonContent,
-    IonList,
-    IonToggle,
-    IonLabel,
-    IonInput,
-    IonSegment,
-    IonSegmentButton,
-    IonButton,
-    IonModal,
     IonButtons,
-    IonRouterOutlet,
-    
+    IonButton,
+    IonIcon,
+    IonContent,
+    IonMenuButton,
+    IonLabel,
+    IonCard,
+    IonCardHeader,
+    IonCardTitle,
+    IonCardContent,
+    IonModal,
+    IonItem,
   } from '@ionic/react';
-  import { Redirect, Route } from 'react-router-dom';
+import Notifications from './Notifications';
+import { useState } from 'react';
+import { notificationsOutline } from 'ionicons/icons';
+import { getHomeItems } from '../../store/selectors';
+import Store from '../../store';
+import { googleSignup } from '../../store/actions';
+import Image from 'next/image';
+import Card from '../ui/Card';
+import googleLogo from '../../assets/google.png'
 
-  import Home from './Emergencies';
-
-
-  import Store from '../../store';
-  import * as selectors from '../../store/selectors';
+ 
+export async function getServerSideProps(context) {
+    return {
+      props: {
+        csrfToken: await getCsrfToken(context),
+      },
+    };
+  };
   
-  const Login = () => {
-    const login = Store.useState(selectors.getLogin);
+const LoginCard = () => {
+    const [show, setShow] = useState(false)
+    const router = useRouter()
+    // formik hook
+    const formik = useFormik({
+        initialValues: {
+            email: '',
+            password: ''
+        },
+        validate : LoginValidate,
+        onSubmit
+    })
+  
+    async function onSubmit(values){
+        const status = await signIn('credentials', {
+            redirect: false,
+            email: values.email,
+            password: values.password,
+            callbackUrl: "http://localhost:3000/tabs/emergencies"
+        })
+  
+        if(status.ok) router.push(status.url)
+    }
+  
+    // Google Handler function
+    async function handleGoogleSignin() {
+        signIn('google', { callbackUrl : "http://localhost:3000/tabs/emergencies"})
+    }
+  
+    return (
+        
+        <section className='w-3/4 mx-auto flex flex-col'>
+            <div className="title">
+                <h1 className='text-gray-800 text-4xl font-bold py-4'>Login</h1>
+            </div>
+  
+            {/* form */}
+            <form className='flex flex-col gap-5' onSubmit={formik.handleSubmit}>
+                <div className={`${styles.input_group} ${formik.errors.email && formik.touched.email ? 'border-rose-600' : ''}`}>
+                    <input 
+                    type="email"
+                    name='email'
+                    placeholder='Email'
+                    className={styles.input_text}
+                    {...formik.getFieldProps('email')}
+                    />
+                    
+                </div>
+                {formik.errors.email && formik.touched.email ? <span className='text-rose-500'>{formik.errors.email}</span> : <></>}
+  
+                <div className={`${styles.input_group} ${formik.errors.password && formik.touched.password ? 'border-rose-600' : ''}`}>
+                    <input 
+                    type={`${show ? "text" : "password"}`}
+                    name='password'
+                    placeholder='Password'
+                    className={styles.input_text}
+                    {...formik.getFieldProps('password')}
+                    />
+                    
+                </div>
+  
+                {formik.errors.password && formik.touched.password ? <span className='text-rose-500'>{formik.errors.password}</span> : <></>}
+  
+                <div className="input-button">
+                    <button type='submit' className={styles.button}>
+                        Login
+                    </button>
+                </div>
+                <div className="input-button">
+                    <button type='button' onClick={handleGoogleSignin} className={styles.button_custom}>
+                        Login with Google <Image src={googleLogo} width="20" height={20} ></Image>
+                    </button>
+                </div>
+            </form>
+
+        </section>
+  
+    )
+  }
+  
+const RegisterCard = () => {
+  
+    const [show, setShow] = useState({ password: false, cpassword: false })
+    const router = useRouter()
+    const formik = useFormik({
+        initialValues: {
+            username : '',
+            email: '',
+            password: '',
+            cpassword: ''
+        },
+        validate: RegisterValidate,
+        onSubmit
+    })
+  
+    async function onSubmit(values){
+        const options = {
+            method: "POST",
+            headers : { 'Content-Type': 'application/json',
+                        Accept: "application/json"},
+            body: JSON.stringify(values),
+        }
+  
+        await fetch('http://localhost:3000/api/auth/signup', options)
+            .then(res => res.json())
+            .then((data) => {
+                if(data) router.push('http://localhost:3000/tabs/login')
+            })
+    }
+  
+    return (
+
+  
+      <section className='w-3/4 mx-auto flex flex-col'>
+          <div className="title">
+              <h1 className='text-gray-800 text-4xl font-bold py-4'>Register</h1>
+          </div>
+  
+          {/* form */}
+          <form className='flex flex-col gap-5' onSubmit={formik.handleSubmit}>
+              <div className={`${styles.input_group} ${formik.errors.username && formik.touched.username ? 'border-rose-600' : ''}`}>
+                  <input 
+                  type="text"
+                  name='Username'
+                  placeholder='Username'
+                  className={styles.input_text}
+                  {...formik.getFieldProps('username')}
+                  />
+              </div>
+              {formik.errors.username && formik.touched.username ? <span className='text-rose-500'>{formik.errors.username}</span> : <></>}
+              <div className={`${styles.input_group} ${formik.errors.email && formik.touched.email ? 'border-rose-600' : ''}`}>
+                  <input 
+                  type="email"
+                  name='email'
+                  placeholder='Email'
+                  className={styles.input_text}
+                  {...formik.getFieldProps('email')}
+                  />
+              </div>
+              {formik.errors.email && formik.touched.email ? <span className='text-rose-500'>{formik.errors.email}</span> : <></>}
+              <div className={`${styles.input_group} ${formik.errors.password && formik.touched.password ? 'border-rose-600' : ''}`}>
+                  <input 
+                  type={`${show.password ? "text" : "password"}`}
+                  name='password'
+                  placeholder='Password'
+                  className={styles.input_text}
+                  {...formik.getFieldProps('password')}
+                  />
+              </div>
+              {formik.errors.password && formik.touched.password ? <span className='text-rose-500'>{formik.errors.password}</span> : <></>}
+  
+              <div className={`${styles.input_group} ${formik.errors.cpassword && formik.touched.cpassword ? 'border-rose-600' : ''}`}>
+                  <input 
+                  type={`${show.cpassword ? "text" : "Password"}`}
+                  name='cpassword'
+                  placeholder='Confirm Password'
+                  className={styles.input_text}
+                  {...formik.getFieldProps('cpassword')}
+                  />
+              </div>
+              {formik.errors.cpassword && formik.touched.cpassword ? <span className='text-rose-500'>{formik.errors.cpassword}</span> : <></>}
+  
+              {/* login button */}
+              <div className="input-button">
+                  <button type='submit' className={styles.button}>
+                      Sign Up
+                  </button>
+              </div>
+          </form>
+
+      </section>
+    )
+  };
+
+const Login = () => {
+    const homeItems = Store.useState(getHomeItems);
+    const [showNotifications, setShowNotifications] = useState(false);
   
     return (
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle>Log In</IonTitle>
+            <IonTitle>Login or Register</IonTitle>
+            <IonButtons slot="start">
+              <IonMenuButton />
+            </IonButtons>
+            <IonButtons slot="end">
+              <IonButton onClick={() => setShowNotifications(true)}>
+                <IonIcon icon={notificationsOutline} />
+              </IonButton>
+            </IonButtons>
           </IonToolbar>
         </IonHeader>
-        <IonContent>
-          <IonList>
-            <IonItem>
-                <IonLabel>Email: </IonLabel>
-                <IonInput placeholder="Your Email"></IonInput>
-            </IonItem>
-            <IonItem>
-                <IonLabel>Password: </IonLabel>
-                <IonInput value="password" type="password" placeholder="Your Password"></IonInput>
-            </IonItem>
-          </IonList>
-          <IonItem>
-            <IonCheckbox slot="start"></IonCheckbox>
-            <IonLabel>Remember Me</IonLabel>
-        </IonItem>
-        <IonItem>
-            <IonLabel id="open-modal">Forgot Password?</IonLabel>
-            <IonModal trigger="open-modal">
-            <IonHeader>
-                <IonToolbar>
-                <IonButtons slot="start">
-                    <IonButton>Cancel</IonButton>
-                </IonButtons>
-                <IonTitle>Welcome</IonTitle>
-                <IonButtons slot="end">
-                    <IonButton>Confirm</IonButton>
-                </IonButtons>
-                </IonToolbar>
-            </IonHeader>
-            <IonContent className="ion-padding">
-                <IonItem>
-                <IonLabel position="stacked">New password</IonLabel>
-                <IonInput type="password" value="password" placeholder="Your new password" />
-                </IonItem>
-            </IonContent>
-        </IonModal>
-        </IonItem>
-        <IonItem >
-            <IonButton routerLink= "/tabs">Sign In</IonButton>
-        </IonItem>
-        <IonItem>
-            <IonLabel>or</IonLabel>
-        </IonItem>
-        <IonItem>
-            <IonButton>G</IonButton>
-        </IonItem>
+        <IonContent className="ion-padding" fullscreen>
+          <IonHeader collapse="condense">
+            <IonToolbar>
+              <IonTitle size="large">Login</IonTitle>
+            </IonToolbar>
+          </IonHeader>
+          <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
+          <LoginCard></LoginCard>
+          <RegisterCard></RegisterCard>
+  
         </IonContent>
       </IonPage>
     );
   };
   
-  export default Login;
-  
+export default Login;

@@ -179,7 +179,7 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
 
-    --ion-toolbar-background: #0d0d0d;
+    --ion-toolbar-background: #121025;
 
     --ion-item-background: #000000;
 
@@ -192,7 +192,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: #17142E;
     --ion-background-color-rgb: 18, 18, 18;
 
     --ion-text-color: #ffffff;
@@ -222,11 +222,32 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-item-background: #1e1e1e;
 
-    --ion-toolbar-background: #1f1f1f;
+    --ion-toolbar-background: #121025;
 
-    --ion-tab-bar-background: #1f1f1f;
+    --ion-tab-bar-background: #121025;
 
     --ion-card-background: #1e1e1e;
-    --ion-card-background: #dc7400;
+
+    
+  }
+  ion-select {
+
+    --placeholder-opacity: 1;
+    width: 100%;
+    justify-content: center;
+  }
+  ion-select::part(placeholder),
+  ion-select::part(text) {
+    flex: 0 0 auto;
+  }
+  ion-item::part(native) {
+    background: transparent;
+    border-color: transparent;
+  }
+  ion-tab-button {
+    --color: white;
+    --color-focused: #95510D;
+    --color-selected:#95510D;
+
   }
 }

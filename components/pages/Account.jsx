@@ -39,7 +39,7 @@ return (
         <IonButtons slot="start">
         <IonBackButton defaultHref="/tabs/settings" icon={arrowBack} onClick={handleBackClick} />
         </IonButtons>
-        <IonTitle class = "ion-text-center" size="large">Account</IonTitle>
+        <IonTitle class = "ion-text-center" size="large" >Account</IonTitle>
     </IonToolbar>
         </IonHeader>
         <IonContent className="ion-padding">

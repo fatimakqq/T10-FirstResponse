@@ -1,13 +1,45 @@
+
 :root {
   --safe-area-top: env(safe-area-inset-top);
   --safe-area-bottom: env(safe-area-inset-bottom, 0);
   --safe-area-left: env(safe-area-inset-left, 0);
   --safe-area-right: env(safe-area-inset-right, 0);
 }
+
+
+.custom-title{
+  font-family: "Major Mono Display", monospace;
+  font-size: 70px;
+}
+
+html{
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
+}
+
 body {
+  font-weight: 400;
+  position: relative;
+  background-color: #17142E !important;
+  color: #ffffff !important;
+  font-family: "Manjari", sans-serif;
   overflow: hidden;
   height: 100vh;
   width: 100vw;
+}
+
+h1, h2, h3, h4, h5, h6{
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+}
+
+p.success{
+  color: green;
+}
+
+p.danger{
+  color: red;
 }
 
 /**
@@ -193,11 +225,7 @@ body {
   -moz-box-shadow: 0px 0px 5px 5px #0099e0;
   box-shadow: 0px 0px 5px 5px #0099e0;
 }
-
-.profile-picture-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  margin-bottom: 20px;
+@font-face {
+  font-family: "MAJORMONO";
+  src: url("../public/fonts/Major_Mono_Display/MajorMonoDisplay-Regular.ttf");
 }

@@ -1,7 +1,27 @@
-import Image from 'next/image';
+'use client';
+
+import { motion } from 'framer-motion';
+
+import { staggerContainer } from '../../utils/motion';
+import "tailwindcss/tailwind.css";
+
 import Card from '../ui/Card';
+// import { signIn, signOut, refresh } from '../../store/actions';
+import { getSession } from 'next-auth/react'
+import { useSession } from "next-auth/react"
+import { useNavigate } from "react-router-dom";
+
+//import my page components
+import Notifications from './Notifications';
+import { useState, useEffect } from 'react';
+import { notificationsOutline, cog} from 'ionicons/icons';
+import { getEmLogInfo, getHomeItems } from '../../store/selectors';
+import Store from '../../store';
+import { Redirect, Route, useHistory } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
+
+import IndividualLog from './IndividualLog';
+//import my Ionic components
 import {
   IonPage,
   IonHeader,
@@ -21,44 +41,85 @@ import {
   IonItem,
   IonRouterOutlet,
 } from '@ionic/react';
-
 import Settings from './Settings';
 import Tabs from './Tabs'
-import { useState } from 'react';
-import { cog } from 'ionicons/icons';
-import { getHomeItems } from '../../store/selectors';
-import Store from '../../store';
 
-const EmergencyCard = ({ title, type, text, author, authorAvatar, image }) => (
-  <Card className="my-4 mx-auto">
-    <div className="h-32 w-full relative">
-      <img className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full" src={image} alt="" />
+const CustomButton = ({ title, timeStart, timeEnd, location, date, logId }) => {
+  const emergency = { title, timeStart, timeEnd, location, date, logId };
+  return (
+    <div className="w-400 mx-30 h-84">
+      <IonItem routerLink={`/Emergency/${logId}`} routerDirection="forward" state={{ title, timeStart, timeEnd, location, date }}>
+        <motion.button
+          whileHover={{ scale: 1.105, backgroundColor: "rgba(220, 116, 0, 0.8)" }}
+          whileTap={{ scale: 0.95 }}
+          className="w-full h-full bg-green-500 bg-opacity-49 border border-green-500 text-white font-bold py-2 px-4 rounded-lg"
+          style={{ backgroundColor: "rgba(39, 88, 68, 0.49)" }}
+        >
+
+          <div className="p-2 flex justify-between">
+            <div>
+              <h2 className="text-left text-5xl font-majari leading-8 pb-0">{title}</h2>
+              <h3 className="text-left text-2xl font-manjari leading-6 mt-2"> {timeStart} - {timeEnd}</h3>
+              <h3 className="text-left text-2xl font-manjari leading-5 mt-2 opacity-40">{date}</h3>
+            </div>
+
+            <div className="text-right">
+              <h3 className="text-right text-2xl font-manjari">{location}</h3>
+            </div>
+          </div>
+        </motion.button>
+      </IonItem>
     </div>
-    <div className="px-4 py-4 bg-white rounded-b-xl dark:bg-gray-900">
-      <h4 className="font-bold py-0 text-s text-gray-400 dark:text-gray-500 uppercase">{type}</h4>
-      <h2 className="font-bold text-2xl text-gray-800 dark:text-gray-100">{title}</h2>
-      <p className="sm:text-sm text-s text-gray-500 mr-1 my-3 dark:text-gray-400">{text}</p>
-      <div className="flex items-center space-x-4">
-        <div className="w-10 h-10 relative">
-          <img src={authorAvatar} className="rounded-full object-cover min-w-full min-h-full max-w-full max-h-full" alt="" />
-        </div>
-        <h3 className="text-gray-500 dark:text-gray-200 m-l-8 text-sm font-medium">{author}</h3>
-      </div>
-    </div>
-  </Card>
-);
+  );
+};
+//      <IonItem routerLink={`/Emergency/${logId}`} routerDirection='forward'> 
+
+
+export async function getServerSideProps({ req }){
+  const session = await getSession({ req })
+
+  if(!session){
+    return {
+      redirect : {
+        destination: '/tabs/login',
+        permanent: false
+      }
+    }
+  }
+
+  return {
+    props: { session }
+  }
+}
 
 const Emergencies = () => {
-  const homeItems = Store.useState(getHomeItems);
+  const homeItems = Store.useState(getEmLogInfo);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const [emergencies, setEmergencies ] = useState([]); 
+  const emLogInfo = Store.useState(getEmLogInfo);
+
+  useEffect(() => {
+    const fetchEmergencies = async () => {
+      try {
+        const response = await fetch("http://localhost:3000/api/emergency"); ///////////SHANNON HERE!!!!!
+        const data = await response.json();
+        setEmergencies(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchEmergencies();
+  }, []);
 
   return (
     <IonPage>
+
       <IonHeader>
         <IonRouterOutlet>
         <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
         </IonRouterOutlet>
         <IonToolbar>
-          <IonTitle>Emergency Log</IonTitle>
+          <IonTitle>Emergency Logs</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
@@ -69,37 +130,41 @@ const Emergencies = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
+
       <IonContent className="ion-padding" fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">Emergency Log</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <IonTitle size="large">Test</IonTitle>
-        <IonCard color="danger" id="open-modal">
-          <IonCardHeader>
-            <IonCardTitle>Current Emergency</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            Heres a small text description for the current emergency. 
-          </IonCardContent>
-        </IonCard>
+       <IonTitle className="font-majorMonoDisplay text-7xl leading-none pb-8">
+           <div>EMERGENCY</div>
+           <div>LOGS</div>
+       </IonTitle>
+       <IonTitle className='font-manjari text-green-800 text-right text-5xl leading-none pb-5'>
+          today
+        </IonTitle>
 
-        <IonModal color="danger" trigger="open-modal">
-          <IonHeader>
-            <IonToolbar></IonToolbar>
-          </IonHeader>
-          <IonContent className="ion-padding">
-            <IonItem>
-              <IonLabel>Active Emergency!!</IonLabel>
-            </IonItem>
-          </IonContent>
-        </IonModal>
+        <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
 
-        {homeItems.map((i, index) => (
-          <EmergencyCard {...i} key={index} />
-        ))}
+        <motion.div
+           variants={staggerContainer}
+           initial="hidden"
+           whileInView="show"
+           viewport={{ once: 'false' , amount: 0.25}}
+        >
+          <div className='grid grid-cols-1 gap-6'>
+            {emLogInfo.map((log, index) => ( //{emergencies.map((log, index) => (     FOR WHEN YOU GET THE API URL 
+              <CustomButton
+              logId={log.logId}
+              title={log.title}
+              time={log.time}
+              location={log.location}
+              date = {log.date}
+              timeStart={log.timeStart}
+              timeEnd={log.timeEnd}
+            />
+            ))}
+          </div>
+        </motion.div>
+
       </IonContent>
+
     </IonPage>
   );
 };

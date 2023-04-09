@@ -2,6 +2,8 @@ import Head from 'next/head';
 import Script from 'next/script';
 import { setupIonicReact } from '@ionic/react';
 
+import '../styles/global.css';
+
 import 'tailwindcss/tailwind.css';
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -19,8 +21,9 @@ import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
 
-import '../styles/global.css';
 import '../styles/variables.css';
+import '../styles/global.css';
+import { SessionProvider } from 'next-auth/react'
 
 function MyApp({ Component, pageProps }) {
   return (
@@ -31,12 +34,19 @@ function MyApp({ Component, pageProps }) {
           content="width=device-width, initial-scale=1.0, viewport-fit=cover"
         ></meta>
       </Head>
-      <Component {...pageProps} />
+      {/* new */}
+      <SessionProvider session={pageProps.session}>
+        <Component {...pageProps} />
+      </SessionProvider>
+      {/* new */}
+      {/* <Component {...pageProps} /> */}
       <Script
         type="module"
         src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"
       ></Script>
       <Script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></Script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhhJfm9B9r5evrHoSDWRUQX3gr6ac2W4"></script>
+
     </>
   );
 }
