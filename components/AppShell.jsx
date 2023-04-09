@@ -11,6 +11,7 @@ import ListDetail from './pages/ListDetail';
 import Settings from './pages/Settings';
 import Calendar from './pages/Calendar';
 import Converter from './pages/Converter';
+import Login from './pages/Login';
 import Tabs from './pages/Tabs';
 
 
@@ -29,8 +30,8 @@ const AppShell = () => {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet id="main">
+          <Route path="/" component={Login} exact/>
           <Route path="/tabs" render={() => <Tabs />} />
-          <Route path="/" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>

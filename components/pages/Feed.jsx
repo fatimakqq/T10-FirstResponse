@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import Card from '../ui/Card';
-import { IonReactRouter } from '@ionic/react-router';
-import { Redirect, Route } from 'react-router-dom';
+
 import {
   IonPage,
   IonHeader,
@@ -12,24 +11,14 @@ import {
   IonIcon,
   IonContent,
   IonMenuButton,
-  IonLabel,
-  IonCard,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardContent,
-  IonModal,
-  IonItem,
-  IonRouterOutlet,
 } from '@ionic/react';
-
-import Settings from './Settings';
-import Tabs from './Tabs'
+import Notifications from './Notifications';
 import { useState } from 'react';
-import { cog } from 'ionicons/icons';
+import { notificationsOutline } from 'ionicons/icons';
 import { getHomeItems } from '../../store/selectors';
 import Store from '../../store';
 
-const EmergencyCard = ({ title, type, text, author, authorAvatar, image }) => (
+const FeedCard = ({ title, type, text, author, authorAvatar, image }) => (
   <Card className="my-4 mx-auto">
     <div className="h-32 w-full relative">
       <img className="rounded-t-xl object-cover min-w-full min-h-full max-w-full max-h-full" src={image} alt="" />
@@ -48,23 +37,21 @@ const EmergencyCard = ({ title, type, text, author, authorAvatar, image }) => (
   </Card>
 );
 
-const Emergencies = () => {
+const Feed = () => {
   const homeItems = Store.useState(getHomeItems);
+  const [showNotifications, setShowNotifications] = useState(false);
 
   return (
     <IonPage>
       <IonHeader>
-        <IonRouterOutlet>
-        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
-        </IonRouterOutlet>
         <IonToolbar>
-          <IonTitle>Emergency Log</IonTitle>
+          <IonTitle>Feed</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
           <IonButtons slot="end">
-            <IonButton routerLink="/tabs/settings">
-              <IonIcon icon={cog} />
+            <IonButton onClick={() => setShowNotifications(true)}>
+              <IonIcon icon={notificationsOutline} />
             </IonButton>
           </IonButtons>
         </IonToolbar>
@@ -72,36 +59,16 @@ const Emergencies = () => {
       <IonContent className="ion-padding" fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Emergency Log</IonTitle>
+            <IonTitle size="large">Feed</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <IonTitle size="large">Test</IonTitle>
-        <IonCard color="danger" id="open-modal">
-          <IonCardHeader>
-            <IonCardTitle>Current Emergency</IonCardTitle>
-          </IonCardHeader>
-          <IonCardContent>
-            Heres a small text description for the current emergency. 
-          </IonCardContent>
-        </IonCard>
-
-        <IonModal color="danger" trigger="open-modal">
-          <IonHeader>
-            <IonToolbar></IonToolbar>
-          </IonHeader>
-          <IonContent className="ion-padding">
-            <IonItem>
-              <IonLabel>Active Emergency!!</IonLabel>
-            </IonItem>
-          </IonContent>
-        </IonModal>
-
+        <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
         {homeItems.map((i, index) => (
-          <EmergencyCard {...i} key={index} />
+          <FeedCard {...i} key={index} />
         ))}
       </IonContent>
     </IonPage>
   );
 };
 
-export default Emergencies;
+export default Feed;

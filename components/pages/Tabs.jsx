@@ -1,14 +1,19 @@
 import { Redirect, Route } from 'react-router-dom';
 import { IonRouterOutlet, IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { radioButtonOn, calculator, analytics, calendar, cube } from 'ionicons/icons';
+import { radioButtonOn, calculator, analytics, calendar, cube } from 'ionicons/icons'; //import 'cog' icon
 
 import Home from './Emergencies';
 import Lists from './Lists';
 import ListDetail from './ListDetail';
-import Settings from './Settings';
 import Calendar from './Calendar';
 import Converter from './Converter';
+import Settings from './Settings';
+import Account from './Account';
+import About from './About';
+import Help from './Help';
+import Privacy from './Privacy';
+import Assets from './Assets'
 
 const Tabs = () => {
   return (
@@ -19,7 +24,12 @@ const Tabs = () => {
         <Route path="/tabs/lists/:listId" render={() => <ListDetail />} exact={true} />
         <Route path="/tabs/emergencies" render={() => <Home />} exact={true} />
         <Route path="/tabs/calendar" render={() => <Calendar />} exact={true} />
-        <Route path="/tabs/assets" render={() => <Lists />} exact={true} />
+        <Route path="/tabs/assets" render={() => <Assets />} exact={true} />
+        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
+        <Route path="/tabs/account" render={() => <Account />} exact={true} />
+        <Route path="/tabs/about" render={() => <About/>} exact={true} />
+        <Route path="/tabs/help" render={() => <Help/>} exact={true} />
+        <Route path="/tabs/privacy" render={() => <Privacy/>} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/emergencies" />} exact={true} />
       </IonRouterOutlet>
       <IonTabBar slot="bottom">
