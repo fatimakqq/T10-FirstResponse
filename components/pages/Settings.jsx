@@ -49,7 +49,6 @@ const Settings = () => {
 
   return (
     <IonPage>
-      <IonRouterOutlet></IonRouterOutlet>
       <IonHeader>
         <IonToolbar>
           <IonButtons slot="start">
