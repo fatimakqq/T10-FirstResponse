@@ -1,3 +1,4 @@
+
 import React, { useEffect } from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { Bar } from 'react-chartjs-2';
