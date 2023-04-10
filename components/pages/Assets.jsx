@@ -17,8 +17,10 @@ import {
     handleFilterClick,
     IonSelect,
     IonSelectOption,
+    IonOption,
   } from '@ionic/react';
 
+import "tailwindcss/tailwind.css";
 import { Redirect, Route, Link, } from 'react-router-dom';
 import { filter } from 'ionicons/icons';
 import Store from '../../store';
@@ -34,32 +36,34 @@ function Assets() {
       { id: 1, name: 'AUTO BLOOD PRESSURE (1)', checked: false, building: 'Building A', compartment: 'LEFT COMPARTMENT'},
       { id: 2, name: '4-LEAD (1)', checked: false, building: 'Building A' },
       { id: 3, name: 'PULSE OX (1)', checked: false, building: 'Building A' },
-      { id: 4, name: 'AED PADS (1 adult, 1 pediatric)', checked: false, building: 'Building A' },
+      { id: 4, name: 'AED PADS (1 adult, 1 pediatric)', checked: false, building: 'Building A', compartment: 'RIGHT COMPARTMENT' },
       { id: 5, name: 'AED CORD (1) ', checked: false, building: 'Building A' },
       { id: 6, name: '12-LEAD (1)', checked: false, building: 'Building A' },
       { id: 7, name: 'ORAL THERMOMETER (1)', checked: false, building: 'Building A' },
       { id: 8, name: 'THERMOMETER PROBE SLEEVE (5)', checked: false, building: 'Building A' },
-      { id: 9, name: 'TEST LOAD (1)', checked: false, building: 'Building A' },
-      { id: 10, name: 'ETCO2 NC (1)', checked: false, building: 'Building A' },
+      { id: 9, name: 'TEST LOAD (1)', checked: false, building: 'Building A', },
+      { id: 10, name: 'ETCO2 NC (1)', checked: false, building: 'Building A', compartment: 'TOP CENTER COMPARTMENT' },
       { id: 11, name: 'ETCO2 AIRWAY ADAPTER (1)', checked: false, building: 'Building A' },
       { id: 12, name: 'PRINTER PAPER (1)', checked: false, building: 'Building A' },
       { id: 13, name: 'DISPOSABLE RAZORS (2)', checked: false, building: 'Building A' },
       { id: 14, name: 'LANCET (5)', checked: false, building: 'Building A' },
       { id: 15, name: 'GLUCOMETER (1)', checked: false, building: 'Building A' },
       { id: 16, name: 'BGL TEST STRIPS (10)', checked: false, building: 'Building A' },
-      { id: 17, name: 'ALCOHOL PREP PRADS', checked: false, building: 'Building A' },
-      { id: 18, name: 'ECG ELECTRODES (4)', checked: false, building: 'Building A' },
+      { id: 17, name: 'ALCOHOL PREP PRADS (5)', checked: false, building: 'Building A' },
+      { id: 18, name: 'ECG ELECTRODES (4)', checked: false, building: 'Building A', compartment: 'BOTTOM CENTER COMPARTMENT' },
       { id: 19, name: 'LARGE BP CUFF (1)', checked: false, building: 'Building A' },
       { id: 20, name: 'SMALL BP CUFF (1)', checked: false, building: 'Building A' },
       { id: 21, name: 'PED BP CUFF (1)', checked: false, building: 'Building A' },
-      { id: 22, name: 'TEMPORAL THERMOMETER (1)', checked: false, building: 'Building B'},
+      { id: 79, name: 'LIEFPAK 1 BATTERY', checked: false, building: 'Building A', batteryPercentage: 0 },
+      { id: 80, name: 'LFIEPARK 2 BATTERY', checked: false, building: 'Building A', batteryPercentage: 0 },
+      { id: 22, name: 'TEMPORAL THERMOMETER (1)', checked: false, building: 'Building B', compartment: 'LEFT OUTER COMPARTMENT'},
       { id: 23, name: 'PULSE OXIMETER (1)', checked: false, building: 'Building B'},
       { id: 24, name: 'PENLIGHT (1)', checked: false, building: 'Building B'},
       { id: 25, name: 'BGL KIT (1)', checked: false, building: 'Building B'},
       { id: 26, name: 'TRAUMA SHEARS (1)', checked: false, building: 'Building B'},
-      { id: 27, name: 'STETHOSCOPE', checked: false, building: 'Building B'},
+      { id: 27, name: 'STETHOSCOPE', checked: false, building: 'Building B', compartment: 'RIGHT OUTER COMPARTMENT'},
       { id: 28, name: 'BP CUFF (1)', checked: false, building: 'Building B'},
-      { id: 29, name: 'GAUZE PAD', checked: false, building: 'Building B'},
+      { id: 29, name: 'GAUZE PAD', checked: false, building: 'Building B', compartment: 'TOP OUTER COMPARTMENT'},
       { id: 30, name: 'BANDAGE (5)', checked: false, building: 'Building B'},
       { id: 31, name: 'ALCOHOL PREP PAD (2)', checked: false, building: 'Building B'},
       { id: 32, name: 'TAPE ROLL (1)', checked: false, building: 'Building B'},
@@ -69,7 +73,7 @@ function Assets() {
       { id: 36, name: 'FINGER SPLINT (2)', checked: false, building: 'Building B'},
       { id: 37, name: 'FLUSH (2)', checked: false, building: 'Building B'},
       { id: 38, name: 'EMR GUIDEBOOK (1)', checked: false, building: 'Building B'},
-      { id: 39, name: 'EPINEPHRINE', checked: false, building: 'Building C'},
+      { id: 39, name: 'EPINEPHRINE', checked: false, building: 'Building C', compartment: 'MED COMPARTMENT'},
       { id: 40, name: 'ALBUTEROL (2)', checked: false, building: 'Building C' },
       { id: 41, name: 'IPRATROPIUM BROMIDE (2)', checked: false, building: 'Building C' },
       { id: 42, name: 'BENADRYL (5)', checked: false, building: 'Building C' },
@@ -80,7 +84,7 @@ function Assets() {
       { id: 47, name: 'GLUCOSE (2)', checked: false, building: 'Building C' },
       { id: 48, name: 'NEEDLE & SYRINGE (1)', checked: false, building: 'Building C' },
       { id: 49, name: 'MAD ATOMIZER (1)', checked: false, building: 'Building C' },
-      { id: 50, name: 'C-COLLAR (1)', checked: false, building: 'Building C' },
+      { id: 50, name: 'C-COLLAR (1)', checked: false, building: 'Building C', compartment: 'MAIN CENTER COMPARTMENT' },
       { id: 51, name: 'OXYGEN TANK *MAKE SURE > 700 PSI', checked: false, building: 'Building C' },
       { id: 52, name: 'OXYGEN TANK REGULATOR (1)', checked: false, building: 'Building C' },
       { id: 53, name: 'OPA (1)', checked: false, building: 'Building C' },
@@ -100,12 +104,12 @@ function Assets() {
       { id: 67, name: 'GAUZE PAD (3)', checked: false, building: 'Building C' },
       { id: 68, name: 'STRETCH GAUZE BANDAGE', checked: false, building: 'Building C' },
       { id: 69, name: 'SURVIVAL WRAP (1)', checked: false, building: 'Building C' },
-      { id: 70, name: 'N95 (2)', checked: false, building: 'Building C' },
+      { id: 70, name: 'N95 (2)', checked: false, building: 'Building C', compartment: 'LEFT FLAP COMPARTMENT' },
       { id: 71, name: 'GLOVES (1)', checked: false, building: 'Building C' },
       { id: 72, name: 'BIOHAZARD BAG (1)', checked: false, building: 'Building C' },
       { id: 73, name: 'SHARPS CONTAINER (1)', checked: false, building: 'Building C' },
       { id: 74, name: 'EMESIS BAG (1)', checked: false, building: 'Building C' },
-      { id: 75, name: 'NPA (2)', checked: false, building: 'Building C' },
+      { id: 75, name: 'NPA (2)', checked: false, building: 'Building C', compartment: 'RIGHT FLAP COMPARTMENT' },
       { id: 76, name: 'NPA LUBE (1)', checked: false, building: 'Building C' },
       { id: 77, name: 'I-GEL (2)', checked: false, building: 'Building C' },
       { id: 78, name: 'MAGILL FORCEPS (1)', checked: false, building: 'Building C' },
@@ -126,21 +130,21 @@ function Assets() {
       <IonPage>
         <IonHeader>
           <IonToolbar>
-            <IonTitle className="text-center">Assets</IonTitle>
-            <IonSelect slot="start" style={{width: '100px', fontSize: '1em'}} value={selectedBuilding} onIonChange={handleFilterChange}>
-              <IonSelectOption value="Building A">LIFEPAK</IonSelectOption>
+            <IonTitle className="text-center font-majorMonoDisplay">Assets</IonTitle>
+            <IonSelect slot="start" style={{width: '230px', fontSize: '1em', paddingLeft: 0 }} value={selectedBuilding} onIonChange={handleFilterChange}>
+              <IonSelectOption value="Building A">LIFEPAK COMPARTMENT</IonSelectOption>
               <IonSelectOption value="Building B">OUTSIDE COMPARTMENT</IonSelectOption>
               <IonSelectOption value="Building C">MAIN COMPARTMENT</IonSelectOption>
             </IonSelect>
           </IonToolbar>
         </IonHeader>
-        <IonContent fullscreen>
-          <IonList lines="none">
+        <IonContent>
+          <IonList lines="none" style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
             {filteredItems.map(item => (
-              <IonItem key={item.id}>
+              <IonItem className="bg-utd-green ion-justify-content-center" key={item.id} style={{ marginBottom: '15px', borderRadius: '10px', width: '90%' }}>
                 <IonCheckbox checked={item.checked} onIonChange={() => handleItemCheck(item.id)} />
                 <IonLabel style={{ marginLeft: '20px', display: 'inline-block', width: 'calc(100% - 70px)' }}>
-                <div style={{ float: 'right' }}>{item.quantity}</div>
+                <div style={{ position: 'relative', top: '-5.5px', left: '0', zIndex: '999', color: '#95510D', }}>{item.compartment}</div>
                 <div style={{ marginLeft: '10px' }}>{item.name}</div>
               </IonLabel>
               </IonItem>
