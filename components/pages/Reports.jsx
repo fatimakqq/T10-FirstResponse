@@ -2,7 +2,6 @@ import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { Bar } from 'react-chartjs-2';
 import {CategoryScale, Chart, registerables} from 'chart.js';
-Chart.register(CategoryScale, registerables);
 
 const data = {
   labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],

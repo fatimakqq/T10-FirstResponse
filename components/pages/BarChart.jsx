@@ -4,10 +4,6 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/rea
 import { Bar } from 'react-chartjs-2';
 import { Chart, LinearScale } from 'chart.js';
 
-const BarChart = () => {
-    useEffect(() => {
-        Chart.registerScaleType('linear', LinearScale, { position: 'left' });
-      }, []);
 
   const data = {
     labels: ['Male', 'Female'],
