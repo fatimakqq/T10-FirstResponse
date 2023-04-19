@@ -229,3 +229,7 @@ p.danger{
   font-family: "MAJORMONO";
   src: url("../public/fonts/Major_Mono_Display/MajorMonoDisplay-Regular.ttf");
 }
+@font-face {
+  font-family: "MANJARI";
+  src: url("../public/fonts/Manjari/Manjari-Regular.ttf");
+}

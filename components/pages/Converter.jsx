@@ -35,7 +35,7 @@ import {
             <h4
               id="inputUnit"
               name="inputUnit"
-              className="text-5xl h-full font-majorMonoDisplay rounded-md border-0 bg-transparent py-0  pr-7 text-white"
+              className="text-5xl h-full font-manjari rounded-md border-0 bg-transparent py-0  pr-10 mt-12   text-white"
             >
               LBS
             </h4>
@@ -57,7 +57,7 @@ import {
         <IonItem className="my-0 mx-0">
 
           
-          <select className="bg-transparent font-majorMonoDisplay border-none"interface="popover" 
+          <select className="bg-transparent font-manjari border-none"interface="popover" 
           placeholder="Select medication"
           value={selectedMedication}
           onChange={handleSelectChange}
@@ -215,9 +215,10 @@ import {
         <MedicationDropdown 
         selectedMedication={selectedMedication}
         onMedicationChange={handleMedicationChange} />
-        <h4 className=" align-middle text-5xl font-majorMonoDisplay my-0 mx-0 py-0 text-white dark:text-white text-center uppercase"> 
-          <em>{calculatedDosage != null ? calculatedDosage.toFixed(3) : null}</em> 
+        <h4 className=" align-middle text-5xl font-manjari my-0 mx-0 py-0 text-white dark:text-white text-center "> 
+          <em className="font-majorMonoDisplay mr-5 not-italic">{calculatedDosage != null ? calculatedDosage.toFixed(3) : null}</em> 
           {dosageUnit}</h4>
+          
       </div>
       </div>
     </IonCard>

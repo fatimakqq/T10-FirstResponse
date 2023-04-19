@@ -13,6 +13,7 @@ import Calendar from './pages/Calendar';
 import Converter from './pages/Converter';
 import Login from './pages/Login';
 import Tabs from './pages/Tabs';
+import Register from './pages/Register';
 
 import React from 'react';
 import IndividualLog from './pages/IndividualLog';
@@ -37,6 +38,7 @@ const AppShell = () => {
         <IonRouterOutlet id="main">
           <Route path="/" component={Login} exact/>
           <Route path="/tabs" render={() => <Tabs />} />
+          <Route path="/signup" render={() => <Register />} />
           {/* <Switch>
             <Route path="/" exact component={Emergencies}/>
             <Route path="/IndividualLog" component={IndividualLog}/>

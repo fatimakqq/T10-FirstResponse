@@ -19,6 +19,8 @@ import Privacy from './Privacy';
 import Assets from './Assets'
 import Chat from './Chat';
 
+import Register from './Register';
+
 const Tabs = () => {
   return (
     <IonTabs>
@@ -36,6 +38,8 @@ const Tabs = () => {
         <Route path="/tabs/privacy" render={() => <Privacy/>} exact={true} />
         <Route path="/tabs" render={() => <Redirect to="/tabs/login" />} exact={true} />
         <Route path="/tabs/login" render={() => <Login />} exact={true} />
+
+        <Route path="/tabs/register" render={() => <Register />} exact={true} />
         <Route path="/tabs/chat" render={() => <Chat />} exact={true} />
       </IonRouterOutlet>
 
