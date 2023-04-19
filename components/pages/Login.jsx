@@ -40,7 +40,6 @@ import { googleSignup } from '../../store/actions';
 import Image from 'next/image';
 import Card from '../ui/Card';
 import googleLogo from '../../assets/google.png'
-
  
 export async function getServerSideProps(context) {
     return {

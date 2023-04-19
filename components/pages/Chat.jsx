@@ -43,7 +43,7 @@ export default function Chat() {
         <div className='container mx-auto max-w-[700px]'>
             <div className='flex flex-col h-screen bg-grey-900'>
                 <h1 className='bg-gradient-to-r from-green-500 to-red-500 text-transparent bg-clip-text text-center py-3 font-bold text-6xl'>Chatbot</h1>
-                <div className='flex-grow p-6'>
+                <div className='flex-grow p-6 h-96 overflow-y-scroll'>
                     <div className='flex flex-col space-y-4'>
                     {
                         chatLog.map((message, index) =>(
