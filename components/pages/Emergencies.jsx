@@ -1,16 +1,12 @@
 'use client';
-
 import { motion } from 'framer-motion';
-
 import { staggerContainer } from '../../utils/motion';
 import "tailwindcss/tailwind.css";
-
 import Card from '../ui/Card';
 // import { signIn, signOut, refresh } from '../../store/actions';
 import { getSession } from 'next-auth/react'
 import { useSession } from "next-auth/react"
 import { useNavigate } from "react-router-dom";
-
 //import my page components
 import Notifications from './Notifications';
 import { useState, useEffect } from 'react';
@@ -45,31 +41,45 @@ import {
 import Settings from './Settings';
 import Tabs from './Tabs'
 
-const CustomButton = ({ title, timeStart, timeEnd, location, date, logId }) => {
-  const emergency = { title, timeStart, timeEnd, location, date, logId };
+const CustomButton = ({ title, timeStart, timeEnd, location, date, logId, index }) => {
+  const emergency = { title, timeStart, timeEnd, location, date, logId, index };
+  const history = useHistory();
+  const handleClick = () => {
+    history.push(`/Emergency/${index}`);
+    console.log("ya" + index);
+  };
+//routerLink={`/Emergency/${logId}`} routerDirection="forward" state={{ title, timeStart, timeEnd, location, date, index }}>
   return (
+    <div>
+   
     <div className="w-400 mx-30 h-84">
-      <IonItem routerLink={`/Emergency/${logId}`} routerDirection="forward" state={{ title, timeStart, timeEnd, location, date }}>
+      
+      
+      <IonItem onClick={handleClick}> 
         <motion.button
-          whileHover={{ scale: 1.105, backgroundColor: "rgba(220, 116, 0, 0.8)" }}
+          whileHover={{ scale: 1.05, backgroundColor: "rgba(220, 116, 0, 0.8)", borderRadius: "30px"}}
           whileTap={{ scale: 0.95 }}
           className="w-full h-full bg-green-500 bg-opacity-49 border border-green-500 text-white font-bold py-2 px-4 rounded-lg"
-          style={{ backgroundColor: "rgba(39, 88, 68, 0.49)" }}
+          style={{ backgroundColor: "rgba(39, 88, 68, 0.49)", }}
         >
           <div className="p-2 flex justify-between">
             <div>
-              <h2 className="text-left text-5xl font-majari leading-8 pb-0">{title}</h2>
-              <h3 className="text-left text-2xl font-manjari leading-6 mt-2"> {timeStart} - {timeEnd}</h3>
+              <h2 className="text-left text-4xl font-manjari leading-8 pb-0">{title}</h2>
+              <h3 className="text-left text-2xl font-manjari leading-6 mt-2"> {timeStart} - {timeEnd}</h3> 
               <h3 className="text-left text-2xl font-manjari leading-5 mt-2 opacity-40">{date}</h3>
             </div>
-
             <div className="text-right">
               <h3 className="text-right text-2xl font-manjari">{location}</h3>
+              
+              
             </div>
           </div>
+          
         </motion.button>
+        
       </IonItem>
-    </div>
+      
+    </div></div>
   );
 };
 
@@ -85,14 +95,11 @@ export async function getServerSideProps({ req }) {
       }
     }
   }
-
   return {
     props: { session }
   }
 }
-
 const Emergencies = () => {
-  const homeItems = Store.useState(getEmLogInfo);
   const [showNotifications, setShowNotifications] = useState(false);
   const [emergencies, setEmergencies] = useState([]);
   const emLogInfo = Store.useState(getEmLogInfo);
@@ -101,7 +108,7 @@ const Emergencies = () => {
   useEffect(() => {
     const fetchEmergencies = async () => {
       try {
-        const response = await fetch("http://localhost:3000/api/emergency"); ///////////SHANNON HERE!!!!!
+        const response = await fetch("http://localhost:3001/api/emergency"); ///////////SHANNON HERE!!!!!
         const data = await response.json();
         setEmergencies(data);
       } catch (error) {
@@ -110,16 +117,16 @@ const Emergencies = () => {
     };
     fetchEmergencies();
   }, []);
-
   return (
     <IonPage>
-
+      
       <IonHeader>
         <IonRouterOutlet>
           <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
         </IonRouterOutlet>
+
         <IonToolbar>
-          <IonTitle>emergency logs</IonTitle>
+          <IonTitle className= "font-majorMonoDisplay">Emergency Logs</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
@@ -130,7 +137,7 @@ const Emergencies = () => {
           </IonButtons>
         </IonToolbar>
       </IonHeader>
-
+      
       <IonContent className="ion-padding" fullscreen>
         <IonTitle className="font-majorMonoDisplay text-7xl leading-none pb-8">
           <div>EMERGENCY</div>
@@ -138,9 +145,16 @@ const Emergencies = () => {
         </IonTitle>
         <IonTitle className='font-manjari text-green-800 text-right text-5xl leading-none pb-5'>
           today
+          
         </IonTitle>
-
+        
+        
         <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
+
+      <div id="animation-circle" class="relative">
+        <div class="absolute z-50 right-0 -mt-2  ml-8 w-8 h-8 rounded-full bg-red-700 animate-ping"></div>
+        <div class="absolute z-50 right-0  -mt-2 ml-8 w-8 h-8 rounded-full bg-red-700"></div>
+      </div>
 
         <motion.div
           variants={staggerContainer}
@@ -158,6 +172,7 @@ const Emergencies = () => {
               date = {log.date}
               timeStart={log.timeStart}
               timeEnd={log.timeEnd}
+              index = {index}
             />
             ))}
           </div> */}
@@ -205,11 +220,10 @@ const Emergencies = () => {
 
 
         </motion.div>
-
+        
       </IonContent>
-
+      
     </IonPage>
   );
 };
-
 export default Emergencies;

@@ -1,76 +1,160 @@
-//import my Ionic components
-import {
-    IonPage,
-    IonHeader,
-    IonToolbar,
-    IonTitle,
-    IonButtons,
-    IonButton,
-    IonIcon,
-    IonContent,
-    IonMenuButton,
-  } from '@ionic/react';
-
-//import my page components 
-import { useState, useEffect } from 'react';
-import { notificationsOutline } from 'ionicons/icons';
-import { getHomeItems } from '../../store/selectors';
-import Store from '../../store';
-
-const MapCard = ({destination}) => {
-    const [map, setMap] = useState(null);
-    useEffect(() => {
-        const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhhJfm9B9r5evrHoSDWRUQX3gr6ac2W4`;
-        script.onload = () => {
-            const newMap = new window.google.maps.Map(document.getElementById('map'), {
-              center: { lat: 0, lng: 0 },
-              zoom: 15,
-            });
-            setMap(newMap);
-
-            const directionsService = new window.google.maps.DirectionsService();
-            const directionsRenderer = new window.google.maps.DirectionsRenderer();
-            directionsRenderer.setMap(newMap);
-            navigator.geolocation.getCurrentPosition(position => {
-                const { latitude, longitude } = position.coords;
-                const origin = new window.google.maps.LatLng(latitude, longitude);
-                //console.log(position.coords);
-                const request = {
-                  origin,
-                  destination,
-                  travelMode: 'DRIVING',
-                };
-        
-                directionsService.route(request, (result, status) => {
-                  if (status === 'OK') {
-                    directionsRenderer.setDirections(result);
-                  }
-                });
-              });
-
-    };
-    document.head.appendChild(script);
-    }, [destination]);
+import React, { useState, useEffect } from 'react';
+import { IonContent, IonPage, IonHeader, IonToolbar, IonTitle } from '@ionic/react';
+import Chart from 'chart.js/auto';
+const CallsByType = () =>{
     
-    return(
-        <div id="map" style={{ height: '50%', width: '100%' }} />
-    );
 }
+
 const Reports = () => {
-    const homeItems = Store.useState(getHomeItems);
-    const destination = "Grapevine, TX"; // a sample destination
+  useEffect(() => {
+    
+    //calls by type: bar chart ------------------------------------------------
+    const canvas = document.getElementById('callsByTypeBar');
+    const ctx = canvas.getContext('2d');
+
+    const data = {
+      labels: ['Trauma', 'Fall', 'Dizziness', 'Injury', 'Intoxication', 'Abdominal Pain', 'Seizure', 'Illness', 'Breathing', 'Syncope'],
+      
+      datasets: [{
+        label: '',
+        data: [12, 4, 3, 8, 2, 3, 4,5,7,2],
+        backgroundColor: [
+            'rgba(255, 159, 64, 0.2)', //orange fill
+          'rgba(75, 192, 192, 0.2)', 
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(75, 192, 192, 0.2)',//green fill
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(75, 192, 192, 0.2)'
+        ],
+        borderColor: [
+            'rgba(255, 159, 64, 1)', //orange outline
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(75, 192, 192, 1)',//green outline
+          'rgba(255, 159, 64, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(75, 192, 192, 1)',
+          'rgba(255, 159, 64, 1)',
+          'rgba(75, 192, 192, 1)'
+        ],
+        borderWidth: 2
+      }]
+    };
+
+    const options = {
+        
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+      plugins:{
+        legend:{
+            display:false
+        }
+      }
+    };
+
+    const barChart = new Chart(ctx, {
+      type: 'bar',
+      data: data,
+      options: options
+      
+    });
+
+    // response times- line chart ------------------------------------------------
+    const lineCanvas = document.getElementById('responseTimesLine');
+    const lineCtx = lineCanvas.getContext('2d');
+
+    const lineData = {
+      labels: ['Apr 1-7', 'Apr 8-14', 'Apr 15-21', 'Apr 22-28', 'Apr 29-31'],
+      datasets: [{
+        label: 'My First Dataset',
+        data: [24, 27, 26, 22, 24],
+        fill: false,
+        borderColor: 'rgba(255, 159, 64, 1)',
+        lineTension: 0.1
+      }]
+    };
+
+    const lineOptions = {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      },
+      plugins:{
+        legend:{
+        display:false
+        }
+      }
+      
+    };
+    const lineChart = new Chart(lineCtx, {
+      type: 'line',
+      data: lineData,
+      options: lineOptions
+    });
+
+    //INSERT MORE GRAPHS HERE
+
 
     
-    
-    return(
-        <IonPage>
-            <IonHeader>
-                Reports coming soon.
-            </IonHeader>
-            <MapCard destination={destination}/>
-        </IonPage>
-    );
+
+    // Cleanup function to destroy the charts
+    return () => {
+      barChart.destroy();
+      lineChart.destroy();
+    };
+  }, []);
+
+  return (
+    <IonPage>
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle className= "font-majorMonoDisplay">Reports</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent> 
+            <div className="flex mt-5 text-gray-400 items-center justify-center"> 
+                <select className="bg-transparent  font-manjari border-none "interface="popover" 
+                placeholder="Last 30 days">
+                    <option value="month" selected>Last 30 days</option>
+                    <option value="week">Last 1 week</option>
+                    <option value="year">Last 1 year</option>
+                </select>
+            </div>
+       
+            <h1 className='font-manjari  mb-0 flex items-center justify-center' >Calls By Type</h1>
+            <canvas id="callsByTypeBar"></canvas>
+
+
+            <h1 className='  font-manjari  mb-0 flex items-center justify-center' >Response Times</h1>
+            <canvas id="responseTimesLine"></canvas>
+
+            <h1 className='font-manjari  mb-0 flex items-center justify-center' >Calls By Shift -bar</h1>
+
+            <h1 className='font-manjari  mb-0 flex items-center justify-center' >Calls By Disposition -pie</h1>
+
+            <h1 className='font-manjari  mb-0 flex items-center justify-center' >Calls By Day of Week -bar</h1>
+
+            <h1 className='font-manjari  mb-0 flex items-center justify-center' >Patients By Type -bar</h1>
+            
+            
+
+        </IonContent>
+       
+    </IonPage>
+  );
 }
 
 export default Reports;
