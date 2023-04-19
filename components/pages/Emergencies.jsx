@@ -14,12 +14,13 @@ import { useNavigate } from "react-router-dom";
 //import my page components
 import Notifications from './Notifications';
 import { useState, useEffect } from 'react';
-import { notificationsOutline, cog} from 'ionicons/icons';
+import { notificationsOutline, cog } from 'ionicons/icons';
 import { getEmLogInfo, getHomeItems } from '../../store/selectors';
 import Store from '../../store';
 import { Redirect, Route, useHistory } from 'react-router-dom';
 import { IonReactRouter } from '@ionic/react-router';
 
+import React from 'react';
 import IndividualLog from './IndividualLog';
 //import my Ionic components
 import {
@@ -55,7 +56,6 @@ const CustomButton = ({ title, timeStart, timeEnd, location, date, logId }) => {
           className="w-full h-full bg-green-500 bg-opacity-49 border border-green-500 text-white font-bold py-2 px-4 rounded-lg"
           style={{ backgroundColor: "rgba(39, 88, 68, 0.49)" }}
         >
-
           <div className="p-2 flex justify-between">
             <div>
               <h2 className="text-left text-5xl font-majari leading-8 pb-0">{title}</h2>
@@ -72,15 +72,14 @@ const CustomButton = ({ title, timeStart, timeEnd, location, date, logId }) => {
     </div>
   );
 };
-//      <IonItem routerLink={`/Emergency/${logId}`} routerDirection='forward'> 
 
 
-export async function getServerSideProps({ req }){
+export async function getServerSideProps({ req }) {
   const session = await getSession({ req })
 
-  if(!session){
+  if (!session) {
     return {
-      redirect : {
+      redirect: {
         destination: '/tabs/login',
         permanent: false
       }
@@ -95,8 +94,9 @@ export async function getServerSideProps({ req }){
 const Emergencies = () => {
   const homeItems = Store.useState(getEmLogInfo);
   const [showNotifications, setShowNotifications] = useState(false);
-  const [emergencies, setEmergencies ] = useState([]); 
+  const [emergencies, setEmergencies] = useState([]);
   const emLogInfo = Store.useState(getEmLogInfo);
+
 
   useEffect(() => {
     const fetchEmergencies = async () => {
@@ -116,10 +116,10 @@ const Emergencies = () => {
 
       <IonHeader>
         <IonRouterOutlet>
-        <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
+          <Route path="/tabs/settings" render={() => <Settings />} exact={true} />
         </IonRouterOutlet>
         <IonToolbar>
-          <IonTitle>Emergency Logs</IonTitle>
+          <IonTitle>emergency logs</IonTitle>
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
@@ -132,23 +132,23 @@ const Emergencies = () => {
       </IonHeader>
 
       <IonContent className="ion-padding" fullscreen>
-       <IonTitle className="font-majorMonoDisplay text-7xl leading-none pb-8">
-           <div>EMERGENCY</div>
-           <div>LOGS</div>
-       </IonTitle>
-       <IonTitle className='font-manjari text-green-800 text-right text-5xl leading-none pb-5'>
+        <IonTitle className="font-majorMonoDisplay text-7xl leading-none pb-8">
+          <div>EMERGENCY</div>
+          <div>LOGS</div>
+        </IonTitle>
+        <IonTitle className='font-manjari text-green-800 text-right text-5xl leading-none pb-5'>
           today
         </IonTitle>
 
         <Notifications open={showNotifications} onDidDismiss={() => setShowNotifications(false)} />
 
         <motion.div
-           variants={staggerContainer}
-           initial="hidden"
-           whileInView="show"
-           viewport={{ once: 'false' , amount: 0.25}}
+          variants={staggerContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: 'false', amount: 0.25 }}
         >
-          <div className='grid grid-cols-1 gap-6'>
+          {/* <div className='grid grid-cols-1 gap-6'>
             {emLogInfo.map((log, index) => ( //{emergencies.map((log, index) => (     FOR WHEN YOU GET THE API URL 
               <CustomButton
               logId={log.logId}
@@ -160,7 +160,50 @@ const Emergencies = () => {
               timeEnd={log.timeEnd}
             />
             ))}
-          </div>
+          </div> */}
+
+
+          {
+            <div className='grid grid-cols-1 gap-6'>
+              {emLogInfo.map((log, index) => (
+                log.logId == 4 ? (
+                  <React.Fragment key={index}>
+                    <IonTitle className='font-manjari text-green-800 text-right text-5xl leading-none pb-5'>
+                      previous
+                    </IonTitle>
+
+                    <CustomButton
+                      logId={log.logId}
+                      title={log.title}
+                      time={log.time}
+                      location={log.location}
+                      date={log.date}
+                      timeStart={log.timeStart}
+                      timeEnd={log.timeEnd}
+                    />
+                  </React.Fragment>
+                ) : (
+
+                  <CustomButton
+                    logId={log.logId}
+                    title={log.title}
+                    time={log.time}
+                    location={log.location}
+                    date={log.date}
+                    timeStart={log.timeStart}
+                    timeEnd={log.timeEnd}
+                  />
+                )
+
+              ))}
+            </div>
+          }
+
+
+
+
+
+
         </motion.div>
 
       </IonContent>

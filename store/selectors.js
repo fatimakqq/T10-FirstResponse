@@ -10,3 +10,4 @@ export const getCalendar = createSelector(getState, state => state.calendar);
 export const getConverter = createSelector(getState, state => state.converter);
 
 export const getEmLogInfo = createSelector(getState, state => state.emLogInfo);
+export const getCalendarInfo = createSelector(getState, state => state.calendarInfo);

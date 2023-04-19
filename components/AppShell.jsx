@@ -16,6 +16,7 @@ import Tabs from './pages/Tabs';
 
 import React from 'react';
 import IndividualLog from './pages/IndividualLog';
+import IndividualShift from './pages/IndividualShift';
 
 //import Emergency from  '../pages/Emergency/[...id]';
 
@@ -37,12 +38,8 @@ const AppShell = () => {
         <IonRouterOutlet id="main">
           <Route path="/" component={Login} exact/>
           <Route path="/tabs" render={() => <Tabs />} />
-          {/* <Switch>
-            <Route path="/" exact component={Emergencies}/>
-            <Route path="/IndividualLog" component={IndividualLog}/>
-          </Switch> */}
           <Route path="/Emergency/:id" component={IndividualLog} />
-        
+          <Route path="/shift/:id" component={IndividualShift} />
           
         </IonRouterOutlet>
       </IonReactRouter>

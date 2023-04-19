@@ -1,6 +1,6 @@
 import { Store as PullStateStore } from 'pullstate';
 
-import { lists, homeItems, notifications, emLogInfo } from '../components/pages/index';
+import { lists, homeItems, notifications, emLogInfo, calendarInfo } from '../components/pages/index';
 
 const Store = new PullStateStore({
   safeAreaTop: 0,
@@ -9,6 +9,7 @@ const Store = new PullStateStore({
   notificationsOpen: false,
   currentPage: null,
   emLogInfo,
+  calendarInfo,
   lists,
   notifications,
   settings: {

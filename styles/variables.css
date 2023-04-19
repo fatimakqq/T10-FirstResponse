@@ -3,6 +3,24 @@ http://ionicframework.com/docs/theming/ */
 
 /** Ionic CSS Variables **/
 :root {
+
+  /** Tetsing2 **/
+  --ion-color-testing2: #DC7400;
+	--ion-color-testing2-rgb: 220,116,0;
+	--ion-color-testing2-contrast: #000000;
+	--ion-color-testing2-contrast-rgb: 0,0,0;
+	--ion-color-testing2-shade: #c26600;
+	--ion-color-testing2-tint: #e0821a;
+
+  /** Testing **/
+	--ion-color-testing: #17142E;
+	--ion-color-testing-rgb: 23,20,46;
+	--ion-color-testing-contrast: #ffffff;
+	--ion-color-testing-contrast-rgb: 255,255,255;
+	--ion-color-testing-shade: #141228;
+	--ion-color-testing-tint: #2e2c43;
+
+
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
@@ -147,6 +165,24 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-light-tint: #383a3e;
   }
 
+  .ion-color-testing{
+      --ion-color-base: var(--ion-color-testing);
+     --ion-color-base-rgb: var(--ion-color-testing-rgb);
+        --ion-color-contrast: var(--ion-color-testing-contrast);
+        --ion-color-contrast-rgb: var(--ion-color-testing-contrast-rgb);
+        --ion-color-shade: var(--ion-color-testing-shade);
+        --ion-color-tint: var(--ion-color-testing-tint);
+  }
+
+  .ion-color-testing2 {
+    --ion-color-base: var(--ion-color-testing2);
+    --ion-color-base-rgb: var(--ion-color-testing2-rgb);
+    --ion-color-contrast: var(--ion-color-testing2-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-testing2-contrast-rgb);
+    --ion-color-shade: var(--ion-color-testing2-shade);
+    --ion-color-tint: var(--ion-color-testing2-tint);
+  }
+
   /*
    * iOS Dark Theme
    * -------------------------------------------
@@ -220,13 +256,13 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e7e7e7;
     --ion-color-step-950: #f3f3f3;
 
-    --ion-item-background: #1e1e1e;
+    --ion-item-background: #17142E;
 
     --ion-toolbar-background: #121025;
 
     --ion-tab-bar-background: #121025;
 
-    --ion-card-background: #1e1e1e;
+    --ion-card-background: #17142E;
 
     
   }
@@ -248,6 +284,13 @@ http://ionicframework.com/docs/theming/ */
     --color: white;
     --color-focused: #95510D;
     --color-selected:#95510D;
+  }
 
+  ion-card{
+    border-radius: 3px solid #ffff;
+  }
+
+  ion-list{
+    --background : var(--ion-color-testing);
   }
 }
