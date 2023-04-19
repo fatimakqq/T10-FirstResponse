@@ -15,9 +15,9 @@ module.exports = {
       fontFamily: {
         majorMonoDisplay: ["MAJORMONO", "sans"],
         manjari: ["MANJARI", "sans-serif"], //not too sure if it's monspace, sans-srif, sans, etc...
+        manjari2: ["MANJARI-THIN", "sans-serif"]
       },
       
-
     
       backgroundColor:{
         'bg-opacity-50': 'rgba(39, 88, 68, 0.5)',
