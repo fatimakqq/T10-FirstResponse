@@ -15,9 +15,10 @@ module.exports = withTM({
     unoptimized: true,
     domains: ['images.unsplash.com'],
     loader: 'akamai',
-    path: '',
+    path: '!',
   },
   swcMinify: true,
+  distDir: 'out', // Set the output directory for the static export
   env: {
     OPENAI_API_KEY: process.env.OPENAI_API_KEY,
   },

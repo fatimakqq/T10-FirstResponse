@@ -1,9 +1,7 @@
 'use client';
-//insert other imports here 
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 
-//import my Ionic components
 import {
   IonPage,
   IonHeader,
@@ -25,13 +23,10 @@ import {
 
 
 const ActiveEmCard = ({ title, date, location, logId }) => {
-   // const emergency = { title, timeStart, timeEnd, location, date, logId };
     return (
       <div className="absolute inset-2 bg-pink-600 rounded-lg blur opacity-5">
-      //"w-400 mx-30 h-84"
           <motion.button
-            // whileHover={{ scale: 1.105, backgroundColor: "rgba(220, 116, 0, 0.8)" }}
-            // whileTap={{ scale: 0.95 }}
+
             className="w-full h-full bg-green-500 bg-opacity-49 border border-green-500 text-white font-bold py-2 px-4 rounded-lg"
             style={{ backgroundColor: "rgba(39, 88, 68, 0.49)" }}
           >

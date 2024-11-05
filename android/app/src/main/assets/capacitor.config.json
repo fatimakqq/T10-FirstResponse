@@ -1,6 +1,6 @@
 {
-	"appId": "com.example.app",
-	"appName": "nextjs-tailwind-capacitor",
+	"appId": "com.example.t10firstresponse",
+	"appName": "T10-FirstResponse",
 	"bundledWebRuntime": false,
 	"npmClient": "npm",
 	"webDir": "out",

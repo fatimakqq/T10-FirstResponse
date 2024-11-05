@@ -196,7 +196,7 @@ const MapCard = ({index}) => {
             });
   };
   document.head.appendChild(script);
-  }, []);
+  }, [emLogInfo, index]);
 
   const handleAccordionChange = (event) => {
     setAccordionExpanded(event.detail?.open);

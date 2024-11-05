@@ -1,10 +1,12 @@
-
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import { Bar } from 'react-chartjs-2';
-import { Chart, LinearScale } from 'chart.js';
+import { Chart as ChartJS, LinearScale, CategoryScale, BarElement } from 'chart.js';
 
+// Register the necessary chart components
+ChartJS.register(LinearScale, CategoryScale, BarElement);
 
+const BarChart = () => {
   const data = {
     labels: ['Male', 'Female'],
     datasets: [

@@ -45,7 +45,7 @@ function MyApp({ Component, pageProps }) {
         src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.esm.js"
       ></Script>
       <Script nomodule="" src="https://unpkg.com/ionicons@5.2.3/dist/ionicons/ionicons.js"></Script>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhhJfm9B9r5evrHoSDWRUQX3gr6ac2W4"></script>
+      <Script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWhhJfm9B9r5evrHoSDWRUQX3gr6ac2W4"></Script>
 
     </>
   );
